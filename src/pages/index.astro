@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -13,7 +13,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Nudge The Web',
   ignoreTitleTemplate: true,
 };
 ---
@@ -21,7 +21,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
+  <Hero2
     actions={[
       {
         variant: 'primary',
@@ -35,24 +35,139 @@ const metadata = {
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS
+      Expand Your
+      <span class="text-secondary dark:text-secondary highlight"> Reach</span>, Multiply Your <span class="text-secondary dark:text-secondary highlight"> Impact</span> with Nudge The Web
     </Fragment>
 
     <Fragment slot="subtitle">
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">Ready for business.</span>
+      <span>
+        Nudge The Web drives business growth through targeted digital marketing and strategic operational enhancements. 
+        Our dual approach, featuring both vertical and horizontal scaling, is designed to not just boost your visibility but also optimize efficiency. 
+      </span>
       <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 4.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-       Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages
-      & Blogs.
-    </Fragment>
+        Start your growth journey with us through a detailed audit that paves the way for smart, measurable scaling.
+      </span>
+        </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
 
   <Note />
+
+
+
+  <!-- Steps Widget ****************** -->
+
+    <Steps
+    title="Scale Your Business with Nudge The Web"
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Audit & Set KPIs</span>',
+        description:
+          "We start by understanding your business's unique metrics and objectives, setting the stage for tailored scaling strategies.",
+        icon: 'tabler:package',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Vertical Scaling</span>',
+        description:
+          "Enhance your market presence with targeted digital advertising, leveraging platforms like Facebook and Google Ads to multiply your impact.",
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Horizontal Scaling</span>',
+        description:
+          "Streamline your operations by automating key systems, saving time, and expanding your team's capabilities efficiently.",
+        icon: 'tabler:paint',
+      },
+      {
+        title: 'Ready!',
+        description: 'Your business is now poised for growth with a robust strategy for scaling.',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Steps image',
+    }}
+  />
+
+
+  <!--Content Widget -->
+
+  <Content
+    isReversed
+    tagline="Inside our core principles"
+    title="LOREM IPSUM"
+    items={[
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Vertical Scaling: Amplify Your Growth</h3>
+      By leveraging digital advertising and system multiplication, we aim to enhance your business's core strengths, propelling you to new heights in your market.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+      {
+        title: 'LOREM IPSUM',
+        description:
+          'LOREM IPSUM',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Blueprint Image',
+    }}
+  >
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Horizontal Scaling: LOREM IPSUM</h3>
+    LOREM IPSUM DOLOR 
+  </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
 
   <!-- Features Widget *************** -->
 
@@ -99,153 +214,6 @@ const metadata = {
         icon: 'tabler:bulb',
       },
     ]}
-  />
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro 4.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-       Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</em>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
   />
 
   <!-- Features2 Widget ************** -->
@@ -314,13 +282,13 @@ const metadata = {
 
   <!-- HighlightedPosts Widget ******* -->
 
-  <BlogLatestPosts
+  <!-- <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
                         Astro is a very interesting technology. Thanks.
                 `}
-  />
+  /> -->
 
   <!-- FAQs Widget ******************* -->
 

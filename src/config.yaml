@@ -1,5 +1,5 @@
 site:
-  name: AstroWind
+  name: Nudge The Web
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
+    default: Nudge The Web
+    template: '%s | Nudge The Web'
   description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Nudge The Web
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -82,9 +82,9 @@ ui:
         heading: rgb(0 0 0)
         muted: rgb(16 16 16 / 66%)
         bgPage: rgb(255 255 255)
-        primary: rgb(1 97 239)
-        secondary: rgb(1 84 207)
-        accent: rgb(109 40 217)
+        primary: rgb(235 94 40)
+        secondary: rgb(255 196 86)
+        accent: rgb(247 255 238)
     dark:
       fonts: {}
       colors:
@@ -92,6 +92,6 @@ ui:
         heading: rgb(247, 248, 248)
         muted: rgb(229 236 246 / 66%)
         bgPage: rgb(3 6 32)
-        primary: rgb(1 97 239)
-        secondary: rgb(1 84 207)
-        accent: rgb(109 40 217)
+        primary: rgb(235 94 40)
+        secondary: rgb(255 196 86)
+        accent: rgb(247 255 238)

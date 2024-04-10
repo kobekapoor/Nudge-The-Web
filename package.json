@@ -13,15 +13,20 @@
     "lint:eslint": "eslint . --ext .js,.ts,.astro"
   },
   "dependencies": {
+    "@astrojs/react": "^3.2.0",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
     "@astrolib/analytics": "^0.5.0",
     "@astrolib/seo": "^1.0.0-beta.5",
     "@fontsource-variable/inter": "^5.0.17",
+    "@types/react": "^18.2.75",
+    "@types/react-dom": "^18.2.24",
     "astro": "^4.5.15",
     "astro-icon": "^1.1.0",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "unpic": "^3.18.0"
   },
   "devDependencies": {

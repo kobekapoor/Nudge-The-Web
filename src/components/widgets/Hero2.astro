@@ -20,13 +20,19 @@ const {
   actions = await Astro.slots.render('actions'),
   image = await Astro.slots.render('image'),
 } = Astro.props;
+
+const boxes = new Array(25).fill(0).map((_, i) => ({
+  id: i,
+  color: `hsl(${(i * 25) % 360}, 100%, 75%)`, // Assign a unique color for visibility
+}));
+
 ---
 
 <section class="relative md:-mt-[76px] not-prose">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:h-screen lg:gap-8">
+    <div class="py-12 md:py-20 lg:py-0 lg:flex lg:items-center lg:h-80v lg:gap-8">
       <div class="basis-1/2 text-center lg:text-left pb-10 md:pb-16 mx-auto">
         {
           tagline && (
@@ -65,27 +71,205 @@ const {
         </div>
         {content && <Fragment set:html={content} />}
       </div>
-      <div class="basis-1/2">
-        {
-          image && (
-            <div class="relative m-auto max-w-5xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto rounded-md w-full"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  width={600}
-                  height={600}
-                  {...image}
-                />
-              )}
-            </div>
-          )
-        }
+      <div class="flex flex-col items-center justify-center basis-1/2 pb-10 mx-auto md:pb-16 lg:items-start">
+        <div class="flex items-end justify-left container" style="height:350px; width:290px" data-container>
+          {boxes.map((box, index) => (
+            <div key={box.id} class="box mb-10" style={`background-color: ${box.color}; position: absolute; width: 50px; height: 50px; transition: all 0.5s ease; transition-delay: .1s; `} data-box data-index={index}></div>
+          ))}
+        </div>
+        <div class="min-h-28 w-full">
+          <Image src="../assets/images/Arched-Arrow.svg" alt="Growth curve illustration" class="w-full h-auto" />
+          <p id="explanation" class="text-xl text-start text-muted dark:text-slate-300">This box represents your business. We want to help you scale. Go ahead, click it!</p>
+        </div>
       </div>
-    </div>
+      
   </div>
 </section>
+
+<!-- Inline script for client-side interactivity -->
+<script>
+   let typingInterval;
+  let isErasing = false;
+  let isTyping = false; // Flag to indicate if typing animation is in progress
+
+
+  function stopCurrentAnimation() {
+    clearInterval(typingInterval);
+    isErasing = false;
+    isTyping = false;
+  }
+
+  function typeEffect(element, newText, baseDelay = 25) {
+    if (isErasing) {
+      stopCurrentAnimation();
+      element.innerHTML = ""; // Instantly clear the text for a fresh start
+    }
+
+    const eraseCurrentText = () => {
+      let currentText = element.innerHTML;
+      isErasing = true;
+      typingInterval = setInterval(() => {
+        if (currentText.length > 0) {
+          currentText = currentText.slice(0, -1);
+          element.innerHTML = currentText;
+        } else {
+          clearInterval(typingInterval);
+          isErasing = false;
+          typeNewText();
+        }
+      }, baseDelay / 2);
+    };
+
+    const typeNewText = () => {
+      let i = 0;
+      isTyping = true; // Indicate that typing has started
+      const typeNextChar = () => {
+        if (i < newText.length) {
+          element.innerHTML += newText.charAt(i);
+          i++;
+          let nextDelay = baseDelay;
+
+          // Adjust delay based on the character just typed
+          if (i > 1 && (newText.charAt(i - 1) === '.' || newText.charAt(i - 1) === ',' || newText.charAt(i - 1) === '!')) {
+            nextDelay += baseDelay + 400; // Apply longer delay after typing punctuation
+          } else if (Math.random() > 0.8) {
+            nextDelay += Math.floor(Math.random() * baseDelay / 2); // Randomly vary delay
+          }
+
+          if (i < newText.length) {
+            clearTimeout(typingInterval);
+            typingInterval = setTimeout(typeNextChar, nextDelay);
+          } else {
+            isTyping = false; // Typing complete
+          }
+        }
+      };
+      typeNextChar(); // Start typing the new text
+    };
+
+    if (!isErasing && !isTyping) {
+      eraseCurrentText(); // Start by erasing current text if not already typing
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('[data-container]');
+    let clickCount = 0;
+    
+    container.addEventListener('click', () => {
+      clickCount++;
+      const explanation = document.getElementById('explanation');
+      const boxes = container.querySelectorAll('[data-box]');
+      
+      if (isTyping) {
+            // If typing is in progress, stop the typing animation and start the erasing animation
+            clearInterval(typingInterval);
+            isTyping = false;
+            
+        }
+
+          // Corrected: Moved the typeEffect function call outside of the forEach loop.
+      setTimeout(() => { // Delay to allow for reset transformations to apply
+        switch(clickCount % 6) {
+          case 1: {
+            typeEffect(explanation, "Woah! You're growing! That's called vertical scaling. Try clicking it again..");
+            break;
+          }
+          case 2: {
+            typeEffect(explanation, "Oh my! Now you just scaled horizontally! Scroll down to learn more about us :)");
+            break;
+          }
+          case 3: {
+            typeEffect(explanation, "Hey! You're not supposed to scale down 😠 Please scale up again!!");
+            break;
+          }
+          case 4: {
+            typeEffect(explanation, "Ahh, that's better 😌");
+            break;
+          }
+          case 5: {
+            typeEffect(explanation, "Ugh, fine, you can keep clicking to play around I guess.");
+            break;
+          }
+          case 0: {
+            typeEffect(explanation, "Now we have to start all over!");
+            break;
+          }
+        }
+      }, 50); // A slight delay ensures transformations are correctly applied after resets
+    
+      
+      // Apply transformations based on the current state.
+      boxes.forEach((box, index) => {
+
+        // Calculate row and column for grid positioning
+        const row = Math.floor(index / 5);
+        const col = index % 5;
+
+        box.style.transform = ''; // Hide other boxes
+
+        setTimeout(() => { // Delay to allow for reset transformations to apply
+          switch(clickCount % 6) {
+            case 1: {
+             
+              boxes.forEach((box, index) => {
+                const targetRow = Math.floor(index / 5);
+                const translateYValue = -(5 - 1 - targetRow) * 60;
+                box.style.transform = `translateY(${translateYValue}px)`;
+              });
+              break;
+            }
+            case 2: {
+              
+              boxes.forEach((box, index) => {
+                const col = index % 5;
+                const targetRow = Math.floor(index / 5);
+                const translateYValue = -(5 - 1 - targetRow) * 60;
+                box.style.transform = `translate(${col * 60}px, ${translateYValue}px)`;
+              });
+              break;
+            }
+            case 3: {
+             
+              boxes.forEach((box, index) => {
+                const row = Math.floor(index / 5);
+                box.style.transform = `translateY(${-((4 - row) * 60)}px) `;
+              });
+              break;
+            }
+            case 4: {
+             
+              boxes.forEach((box, index) => {
+                const col = index % 5;
+                const targetRow = Math.floor(index / 5);
+                box.style.transform = `translate(${col * 60}px, ${-(5 - 1 - targetRow) * 60}px)`;
+              });
+              break;
+            }
+            case 5: {
+              
+              boxes.forEach((box, index) => {
+                const row = Math.floor(index / 5);
+                box.style.transform = `translateY(${-((4 - row) * 60)}px) `;
+              });
+              break;
+            }
+            case 0: {
+             
+              boxes.forEach((box) => {
+                box.style.transform = ''; // Reset transformations
+              });
+              break;
+            }
+          }
+
+        }, 50); // A slight delay ensures transformations are correctly applied after resets
+      });
+    });
+  });
+</script>
+
+<style>
+
+
+</style>
