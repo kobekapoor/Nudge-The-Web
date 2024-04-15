@@ -1,7 +1,17 @@
 ---
-import { SITE } from 'astrowind:config';
+import { UI } from 'astrowind:config';
+import Image from '~/components/common/Image.astro';
+const lightLogo = '~/assets/images/light-logo.png';
+const darkLogo = '~/assets/images/dark-logo.png';
+
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  🚀 {SITE?.name}
+  <Image 
+    id="logoImage"
+    src={lightLogo}  // default to light logo
+    alt="Logo"
+    width={200}
+    class="inline-block align-middle"
+    />
 </span>

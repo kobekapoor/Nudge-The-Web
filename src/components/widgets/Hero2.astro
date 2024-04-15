@@ -3,6 +3,8 @@ import Image from '~/components/common/Image.astro';
 import type { CallToAction } from '~/types';
 import Button from '~/components/ui/Button.astro';
 
+const archedArrow = '~/assets/images/Arched-Arrow.svg';
+
 export interface Props {
   title?: string;
   subtitle?: string;
@@ -74,11 +76,11 @@ const boxes = new Array(25).fill(0).map((_, i) => ({
       <div class="flex flex-col items-center justify-center basis-1/2 pb-10 mx-auto md:pb-16 lg:items-start">
         <div class="flex items-end justify-left container" style="height:350px; width:290px" data-container>
           {boxes.map((box, index) => (
-            <div key={box.id} class="box mb-10" style={`background-color: ${box.color}; position: absolute; width: 50px; height: 50px; transition: all 0.5s ease; transition-delay: .1s; `} data-box data-index={index}></div>
+            <div key={box.id} class="box mb-4" style={`background-color: ${box.color}; position: absolute; width: 50px; height: 50px; transition: all 0.5s ease; transition-delay: .1s; `} data-box data-index={index}></div>
           ))}
         </div>
         <div class="min-h-28 w-full">
-          <Image src="../assets/images/Arched-Arrow.svg" alt="Growth curve illustration" class="w-full h-auto" />
+          <!-- <Image src={archedArrow} alt="Growth curve illustration" class="w-full h-auto" /> -->
           <p id="explanation" class="text-xl text-start text-muted dark:text-slate-300">This box represents your business. We want to help you scale. Go ahead, click it!</p>
         </div>
       </div>

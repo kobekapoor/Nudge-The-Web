@@ -69,7 +69,7 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'light:only' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
   tokens:
     default:
@@ -78,20 +78,24 @@ ui:
         serif: InterVariable
         heading: InterVariable
       colors:
-        default: rgb(16 16 16)
+        default: rgb(40 40 40)
         heading: rgb(0 0 0)
         muted: rgb(16 16 16 / 66%)
         bgPage: rgb(255 255 255)
-        primary: rgb(235 94 40)
+        primary: rgb(235 118 36)
         secondary: rgb(255 196 86)
-        accent: rgb(247 255 238)
+        accent: rgb(255 227 179)
+        lightaccent: rgb(255 255 255)
+        
     dark:
       fonts: {}
       colors:
         default: rgb(229 236 246)
         heading: rgb(247, 248, 248)
         muted: rgb(229 236 246 / 66%)
-        bgPage: rgb(3 6 32)
-        primary: rgb(235 94 40)
-        secondary: rgb(255 196 86)
-        accent: rgb(247 255 238)
+        bgPage: rgb(14 23 27)
+        #bgPage: rgb(3 6 32)
+        primary: rgb(241 118 36)
+        secondary: rgb(255 189 68)
+        accent: rgb(255 219 155)
+        

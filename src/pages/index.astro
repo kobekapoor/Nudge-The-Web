@@ -1,6 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
+import Steps2 from '~/components/widgets/Steps2.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
@@ -25,12 +25,12 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
+        text: 'Contact Us',
+        href: 'tel:+6141445061',
         target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
+        icon: 'tabler:phone',
+      }
+      // { text: 'Learn more', href: '#features' },
     ]}
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
@@ -55,8 +55,6 @@ const metadata = {
 
   <Note />
 
-
-
   <!-- Steps Widget ****************** -->
 
     <Steps
@@ -66,28 +64,35 @@ const metadata = {
         title: 'Step 1: <span class="font-medium">Audit & Set KPIs</span>',
         description:
           "We start by understanding your business's unique metrics and objectives, setting the stage for tailored scaling strategies.",
-        icon: 'tabler:package',
+        icon: 'tabler:file-text',
       },
       {
-        title: 'Step 2: <span class="font-medium">Vertical Scaling</span>',
+        title: 'Step 2: <span class="font-medium">Scaling Strategy Creation</span>',
         description:
-          "Enhance your market presence with targeted digital advertising, leveraging platforms like Facebook and Google Ads to multiply your impact.",
-        icon: 'tabler:letter-case',
+          "Our team of experts will develop a comprehensive scaling strategy that leverages your strengths and addresses your weaknesses.",
+        icon: 'tabler:chart-bar',
       },
       {
-        title: 'Step 3: <span class="font-medium">Horizontal Scaling</span>',
+        title: 'Step 3: <span class="font-medium">Implementation & Monitoring</span>',
         description:
-          "Streamline your operations by automating key systems, saving time, and expanding your team's capabilities efficiently.",
-        icon: 'tabler:paint',
+          "We will work with you to implement the strategy and monitor its progress, making adjustments as needed to ensure success.",
+        icon: 'tabler:settings',
       },
       {
-        title: 'Ready!',
-        description: 'Your business is now poised for growth with a robust strategy for scaling.',
-        icon: 'tabler:check',
+        title: 'Step 4: <span class="font-medium">Optimization & Growth</span>',
+        description:
+          "As your business grows, we will continue to optimize your strategies to ensure continued success and growth.",
+        icon: 'tabler:arrow-right-circle',
       },
+      {
+        title: 'Celebrate!',
+        description:
+          'Watch your business grow and celebrate your success with Nudge The Web!',
+        icon: 'tabler:confetti',
+      }
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=800&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGVib2FyZHxlbnwwfDF8MHx8fDA%3D&auto=format&fit=crop&w=987&q=80',
       alt: 'Steps image',
     }}
   />
@@ -98,22 +103,17 @@ const metadata = {
   <Content
     isReversed
     tagline="Inside our core principles"
-    title="LOREM IPSUM"
+    title="Scaling Strategies for Your Business"
     items={[
       {
-        title: 'LOREM IPSUM',
+        title: 'Digital Advertising',
         description:
-          'LOREM IPSUM',
+          'Leverage the power of platforms like Facebook and Google Ads to reach your target audience and drive conversions.',
       },
       {
-        title: 'LOREM IPSUM',
+        title: 'System Multiplication',
         description:
-          'LOREM IPSUM',
-      },
-      {
-        title: 'LOREM IPSUM',
-        description:
-          'LOREM IPSUM',
+          'Expand your team’s capabilities by automating key systems, allowing you to scale your business efficiently.',
       },
     ]}
     image={{
@@ -127,7 +127,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-accent dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -138,33 +138,28 @@ const metadata = {
     isAfterContent
     items={[
       {
-        title: 'LOREM IPSUM',
+        title: 'Operational Enhancements',
         description:
-          'LOREM IPSUM',
+          'Streamline your business operations through automation and system optimization, saving time and resources.',
       },
       {
-        title: 'LOREM IPSUM',
+        title: 'Customer Satisfaction',
         description:
-          'LOREM IPSUM',
-      },
-      {
-        title: 'LOREM IPSUM',
-        description:
-          'LOREM IPSUM',
-      },
+          'Enhance your customer experience through targeted strategies that drive satisfaction and loyalty.',
+      }
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      src: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGN1c3RvbWVyc3xlbnwwfDF8MHx8fDA%3D',
       alt: 'Blueprint Image',
     }}
   >
   <Fragment slot="content">
-    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Horizontal Scaling: LOREM IPSUM</h3>
-    LOREM IPSUM DOLOR 
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Horizontal Scaling: Optimize Your Efficiency</h3>
+    By focusing on operational enhancements and customer satisfaction, we help you optimize your business's efficiency and drive growth through customer loyalty.
   </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-accent dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -172,113 +167,124 @@ const metadata = {
   <!-- Features Widget *************** -->
 
   <Features
-    id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022."
+    id="kpis"
+    tagline="KPIs"
+    title="Specific numbers we can help you scale"
+    subtitle="Our team of experts will help you identify and optimize the key performance indicators that matter most to your business."
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Revenue',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
+          'The lifeblood of your business. We help you increase revenue through targeted marketing and operational enhancements.',
+        icon: 'tabler:currency-dollar',
       },
       {
-        title: 'Ready-to-use Components',
+        title: 'Conversion Rate',
         description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
+          'The percentage of visitors who complete a desired action. We help you increase this metric through targeted marketing strategies.',
+        icon: 'tabler:percentage',
       },
       {
-        title: 'Best Practices',
+        title: 'Customer Acquisition Cost',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+          'The cost of acquiring a new customer. We help you reduce this metric through efficient marketing strategies.',
+        icon: 'tabler:shopping-cart',
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'Customer Lifetime Value',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
+          'The total revenue a customer generates over their lifetime. We help you increase this metric through customer retention strategies.',
+        icon: 'tabler:users',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Customer Retention Rate',
         description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
+          'The percentage of customers who continue to use your product or service. We help you increase this metric through customer retention strategies.',
+        icon: 'tabler:repeat-once',
       },
       {
-        title: 'Open to new ideas and contributions',
+        title: 'Reviews',
         description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
+          'The number of positive reviews your business receives. We help you increase this metric through customer satisfaction strategies.',
+        icon: 'tabler:star',
       },
+      {
+        title: 'Time Spent on Tasks',
+        description:
+          'The amount of time your employees spend on tasks. We help you reduce this metric through operational efficiency strategies.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Jobs Completed',
+        description:
+          'The number of jobs your employees complete. We help you increase this metric through operational efficiency strategies.',
+        icon: 'tabler:check',
+      }
+      
     ]}
   />
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
     tagline="Components"
     items={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
+        title: 'Revenue',
         description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
+          'The lifeblood of your business. We help you increase revenue through targeted marketing and operational enhancements.',
+        icon: 'flat-color-icons:money-transfer',
       },
       {
-        title: 'Features',
+        title: 'Conversion Rate',
         description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
+          'The percentage of visitors who complete a desired action. We help you increase this metric through targeted marketing strategies.',
+        icon: 'flat-color-icons:conversion-rate',
       },
       {
-        title: 'Content',
+        title: 'Customer Acquisition Cost',
         description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
+          'The cost of acquiring a new customer. We help you reduce this metric through efficient marketing strategies.',
+        icon: 'tabler:shopping-cart',
       },
       {
-        title: 'Call-to-Action',
+        title: 'Customer Lifetime Value',
         description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
+          'The total revenue a customer generates over their lifetime. We help you increase this metric through customer retention strategies.',
+        icon: 'tabler:users',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
+        title: 'Customer Retention Rate',
         description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
+          'The percentage of customers who continue to use your product or service. We help you increase this metric through customer retention strategies.',
+        icon: 'tabler:repeat-once',
       },
       {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
+        title: 'Reviews',
+        description:
+          'The number of positive reviews your business receives. We help you increase this metric through customer satisfaction strategies.',
+        icon: 'tabler:star',
       },
+      {
+        title: 'Time Spent on Tasks',
+        description:
+          'The amount of time your employees spend on tasks. We help you reduce this metric through operational efficiency strategies.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Jobs Completed',
+        description:
+          'The number of jobs your employees complete. We help you increase this metric through operational efficiency strategies.',
+        icon: 'tabler:check',
+      }
     ]}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- HighlightedPosts Widget ******* -->
 
@@ -294,45 +300,36 @@ const metadata = {
 
   <FAQs
     title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    subtitle="Here are some of the most common questions we get asked about our services. If you have any other questions, feel free to reach out."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: 'What is Nudge The Web?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          "Nudge The Web is a Sydney based digital marketing and operational enhancement agency that helps businesses grow through targeted marketing and strategic scaling. Our team of experts works with you to identify key performance indicators and optimize your business's growth potential.",
       },
       {
-        title: 'What do I need to start?',
+        title: 'What services does Nudge The Web offer?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'We offer a range of services designed to help your business grow, including digital marketing, operational enhancements, and strategic scaling. Our team of experts will work with you to identify key performance indicators and develop a tailored strategy to help you achieve your business goals.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: 'What is the process for working with Nudge The Web?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          'The first step in working with Nudge The Web is to schedule a consultation with one of our experts. During this consultation, we will discuss your business goals and objectives and develop a tailored strategy to help you achieve them. Once we have a clear understanding of your business needs, we will work with you to implement the strategy and help your business grow.',
       },
       {
-        title: "What's something that you don't understand?",
+        title: 'How can I get started with Nudge The Web?',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          'To get started with Nudge The Web, simply schedule a consultation with one of our experts. During this consultation, we will discuss your business goals and objectives and develop a tailored strategy to help you achieve them. Once we have a clear understanding of your business needs, we will work with you to implement the strategy and help your business grow.',
       },
-      {
-        title: 'What is something that you would like to try again?',
-        description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
-      },
-      {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
-        description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
-      },
+      
     ]}
   />
 
   <!-- Stats Widget ****************** -->
-
+<!-- 
   <Stats
     stats={[
       { title: 'Downloads', amount: '132K' },
@@ -340,28 +337,37 @@ const metadata = {
       { title: 'Forks', amount: '10.3K' },
       { title: 'Users', amount: '48.4K' },
     ]}
-  />
+  /> -->
 
   <!-- CallToAction Widget *********** -->
 
-  <CallToAction
-    actions={[
+  <Steps2
+    title="Reach out to us"
+    subtitle="Have questions? Feel free to contact us using the form below. We're here to help!"
+    id="contact"
+    callToAction={{
+      text: 'Contact us',
+      href: 'tel:+6141445061',
+    }}
+    items={[
       {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        title: 'Email us',
+        type: 'email',
+        description: 'hello@nudgetheweb.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Call us',
+        type: 'phone',
+        description: '+61 0414 445 061',
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Come see us',
+        type: 'text',
+        description: '14 Commercial Rd, Kingsgrove, NSW 2208',
+        icon: 'tabler:map-pin',
       },
     ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
-    </Fragment>
-  </CallToAction>
+  />
 </Layout>

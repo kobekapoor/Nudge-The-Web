@@ -1,0 +1,141 @@
+---
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Copywriting',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Services"
+    image={{
+      src: 'https://images.unsplash.com/photo-1499914485622-a88fac536970?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHlwaW5nfGVufDB8fDB8fHww',
+      alt: 'Caos Image',
+    }}
+  >
+    <Fragment slot="title">
+      Scale Your Business With <br />
+      <span class="text-secondary dark:text-accent highlight"> Copywriting</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+        We help businesses grow by creating engaging content that converts. Our team of expert copywriters will help you reach your target audience and drive sales.
+    </Fragment>
+  </Hero>
+
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    title="How We Manage Your Content"
+    subtitle="Our team of expert copywriters will help you reach your target audience and drive sales. We create engaging content that converts."
+    columns={2}
+    items={[
+      {
+        title: 'Content Strategy',
+        description:
+          'We help you create a content strategy that aligns with your business goals and target audience.',
+        icon: 'tabler:file-text',
+      },
+      {
+        title: 'SEO Optimization',
+        description:
+          'Our team of SEO experts will help you optimize your content for search engines.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Content Creation',
+        description:
+          'We create engaging content that converts and helps you reach your target audience.',
+        icon: 'tabler:edit',
+      },
+      {
+        title: 'Content Promotion',
+        description:
+          'We help you promote your content through social media, email marketing, and other channels.',
+        icon: 'tabler:share',
+      },
+      
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    title="Why Copywriting Helps Your Business Scale"
+    subtitle="Our team of expert copywriters will help you reach your target audience and drive sales. We create engaging content that converts."
+    isReversed
+    items={[
+      {
+        title: 'Increase Conversions:',
+        description:
+          'Engaging content helps you convert visitors into customers and drive sales.',
+      },
+      {
+        title: 'Improve SEO:',
+        description:
+          'SEO-optimized content helps you rank higher in search engines and reach more people.',
+      },
+      {
+        title: 'Build Brand Awareness:',
+        description:
+          'Engaging content helps you build brand awareness and reach your target audience.',
+      },
+      {
+        title: 'Drive Traffic:',
+        description:
+          'Engaging content helps you drive traffic to your website and increase sales.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1558009250-d3d2229fdf28?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29weXdyaXRpbmd8ZW58MHx8MHx8fDA%3D',
+      alt: '',
+    }}
+  >
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-accent dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <Steps2
+  title="Reach out to us"
+  subtitle="Have questions? Feel free to contact us using the form below. We're here to help!"
+  id="contact"
+  callToAction={{
+    text: 'Contact us',
+    href: 'tel:+6141445061',
+  }}
+  items={[
+    {
+      title: 'Email us',
+      type: 'email',
+      description: 'hello@nudgetheweb.com',
+      icon: 'tabler:mail',
+    },
+    {
+      title: 'Call us',
+      type: 'phone',
+      description: '+61 0414 445 061',
+      icon: 'tabler:headset',
+    },
+    {
+      title: 'Come see us',
+      type: 'text',
+      description: '14 Commercial Rd, Kingsgrove, NSW 2208',
+      icon: 'tabler:map-pin',
+    },
+  ]}
+/>
+
+</Layout>
