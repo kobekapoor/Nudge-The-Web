@@ -1,0 +1,17 @@
+---
+const { isUnderline } = Astro.props;
+const { border } = Astro.props;
+---
+
+{
+  isUnderline ? (
+    <div class="relative transition-transform duration-300 hover:scale-110 hover:rotate-3">
+      <div class={`absolute -top-2 left-2 -right-2 bottom-2 border-2 border-${border}`}></div>
+      <slot />
+    </div>
+  ) : (
+    <div class="">
+      <slot />
+    </div>
+  )
+}

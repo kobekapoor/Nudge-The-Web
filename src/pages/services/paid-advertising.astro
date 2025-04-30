@@ -1,0 +1,134 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import Contact from "../../components/sections/Contact.astro";
+import GridContent from "../../components/sections/GridContent.astro";
+import PaintBrush      from 'astro-heroicons/solid/PaintBrush.astro';
+import CodeBracket     from 'astro-heroicons/solid/CodeBracket.astro';
+import Check           from 'astro-heroicons/solid/Check.astro';
+import RocketLaunch    from 'astro-heroicons/solid/RocketLaunch.astro';
+import analytics from "../../assets/pics/Analytics.png";
+import seo from "../../assets/pics/SEO.png";
+import lighthouse from "../../assets/pics/Lighthouse.png";
+import conversion from "../../assets/pics/Conversion.png";
+import cms from "../../assets/pics/CMS.png";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import Bento from "../../components/sections/Bento.astro";
+import ContentTestimonial from "../../components/sections/ContentTestimonial.astro";
+import clipboarddocumentlist  from "astro-heroicons/solid/ClipboardDocumentList.astro";
+
+
+interface BentoCard {
+  imageSrc: any;
+  imageAlt: string;
+  heading: string;
+  title: string;
+  description: string;
+  /** e.g. "lg:col-span-3", "lg:col-span-2" */
+  gridColClass: string;
+  /** e.g. "object-left", "object-right" */
+  objectPosition?: string;
+}
+
+interface BentoProps {
+  title: string;
+  subtitle: string;
+  cards: BentoCard[];
+}
+
+interface ContentProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  paragraph1: string;
+  cards: {
+    icon: any;
+    title: string;
+    body: string;
+  }[];
+  paragraph2: string;
+  subheading: string;
+  paragraph3: string;
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+}
+const content: ContentProps = {
+  title: 'Professional Paid Advertising Solutions',
+  subtitle: "Drive Results with Precision",
+  description: "We specialise in managing paid advertising campaigns that deliver measurable results. From Meta to Google Ads, we craft strategies tailored to your business goals, ensuring every dollar spent works harder for you.",
+  paragraph1: "Our approach to paid ads management is data-driven and results-focused. Whether you're looking to increase brand awareness, drive traffic, or boost conversions, we create campaigns that align with your objectives.",
+  cards: [
+    {
+      icon: clipboarddocumentlist,
+      title: "Strategic Planning",
+      body: "We analyse your market, competitors, and audience to develop a customised advertising strategy that maximises ROI.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Platform Expertise",
+      body: "From Meta Ads to Google Ads, we leverage the strengths of each platform to reach your target audience effectively.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Continuous Optimisation",
+      body: "We monitor and refine your campaigns in real-time, ensuring optimal performance and adapting to changing trends.",
+    },
+  ],
+  paragraph2: "With our hands-on approach, you gain a partner who is as invested in your success as you are. We provide transparent reporting and actionable insights to keep you informed every step of the way.",
+  subheading: "Results You Can Count On",
+  paragraph3: "Our paid ads management services are designed to deliver tangible outcomes. From increasing leads to driving sales, we focus on what matters most to your business.",
+  testimonial: {
+    quote: "The team at Nudge The Web transformed our paid ads strategy. Their expertise in Meta and Google Ads helped us achieve record-breaking results.",
+    name: "Brenna Goyette",
+    role: "@brenna"
+  }
+};
+
+
+---
+
+<MainLayout title="Paid Advertising" description="Paid Advertising Services">
+	
+    <ServiceHero 
+      title="Drive Growth with Expert Paid Ads Management"
+      description="We specialise in creating and managing paid advertising campaigns on platforms like Meta and Google. Our strategies are tailored to maximise your ROI and achieve your business goals."
+      button="Get Started Today"
+      alt="Paid Advertising"
+    />
+
+    <GridContent
+      title="Our Approach"
+      cards={[
+        {
+          icon: PaintBrush,
+          title: "Strategic Planning",
+          description: "We craft data-driven advertising strategies that align with your business objectives, ensuring every dollar spent delivers results."
+        },
+        {
+          icon: CodeBracket,
+          title: "Platform Expertise",
+          description: "Our team leverages the unique strengths of Meta and Google Ads to effectively reach your target audience and drive engagement."
+        },
+        {
+          icon: Check,
+          title: "Campaign Optimisation",
+          description: "We continuously monitor and optimise your campaigns to ensure peak performance and adapt to market trends in real-time."
+        },
+        {
+          icon: RocketLaunch,
+          title: "Results-Driven Execution",
+          description: "From launch to reporting, we focus on delivering measurable outcomes, such as increased leads, sales, and brand visibility."
+        }
+      ]}
+    />
+
+    <ContentTestimonial
+        {...content}
+    />
+
+        <Contact />
+	</main>
+</MainLayout>

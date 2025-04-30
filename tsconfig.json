@@ -1,15 +1,12 @@
 {
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "strictNullChecks": true,
-    "allowJs": true,
-    "baseUrl": "/Users/kobekapoor/Documents/GitHub/nudgetheweb",
+    "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+    "jsx": "react-jsx"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

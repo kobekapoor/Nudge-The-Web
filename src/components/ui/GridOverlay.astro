@@ -1,0 +1,70 @@
+---
+
+---
+<div
+  id="grid-overlay"
+  class="absolute inset-0 -z-10 w-full h-full text-gray-800 opacity-30
+         [mask-image:radial-gradient(100%_60%_at_top_right,white,transparent)]"
+>
+  <svg id="grid-svg" preserveAspectRatio="none">
+    <defs>
+      <style>
+       @keyframes dash {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -260; }
+}
+.grid-line {
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-dasharray: 250 10;
+  /* add `alternate` so it goes back and forth */
+  animation: dash 5s linear infinite alternate;
+}
+
+
+      </style>
+    </defs>
+  </svg>
+</div>
+
+<script type="module">
+(() => {
+  const svg = document.getElementById('grid-svg');
+  const delayStep = 0.8;
+  const getSize = () => window.innerWidth < 640 ? 100 : 200;
+
+  function drawGrid() {
+    const w = innerWidth, h = innerHeight;
+    const size = getSize();
+    const cols = Math.ceil(w / size), rows = Math.ceil(h / size);
+    const totalW = cols * size, totalH = rows * size;
+
+    svg.setAttribute('viewBox', `0 0 ${totalW} ${totalH}`);
+    svg.querySelectorAll('line').forEach(n => n.remove());
+
+    for (let i = 0; i <= cols; i++) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', i*size);
+      line.setAttribute('y1', 0);
+      line.setAttribute('x2', i*size);
+      line.setAttribute('y2', totalH);
+      line.classList.add('grid-line');
+      line.style.animationDelay = `-${(i * delayStep).toFixed(2)}s`;
+      svg.appendChild(line);
+    }
+    for (let j = 0; j <= rows; j++) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', 0);
+      line.setAttribute('y1', j*size);
+      line.setAttribute('x2', totalW);
+      line.setAttribute('y2', j*size);
+      line.classList.add('grid-line');
+      line.style.animationDelay = `-${(j * delayStep + delayStep/2).toFixed(2)}s`;
+      svg.appendChild(line);
+    }
+  }
+
+  window.addEventListener('resize', drawGrid);
+  drawGrid();
+})();
+</script>

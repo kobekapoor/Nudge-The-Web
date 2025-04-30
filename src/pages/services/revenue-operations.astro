@@ -1,0 +1,134 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import Contact from "../../components/sections/Contact.astro";
+import GridContent from "../../components/sections/GridContent.astro";
+import PaintBrush      from 'astro-heroicons/solid/PaintBrush.astro';
+import CodeBracket     from 'astro-heroicons/solid/CodeBracket.astro';
+import Check           from 'astro-heroicons/solid/Check.astro';
+import RocketLaunch    from 'astro-heroicons/solid/RocketLaunch.astro';
+import analytics from "../../assets/pics/Analytics.png";
+import seo from "../../assets/pics/SEO.png";
+import lighthouse from "../../assets/pics/Lighthouse.png";
+import conversion from "../../assets/pics/Conversion.png";
+import cms from "../../assets/pics/CMS.png";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import Bento from "../../components/sections/Bento.astro";
+import ContentTestimonial from "../../components/sections/ContentTestimonial.astro";
+import clipboarddocumentlist  from "astro-heroicons/solid/ClipboardDocumentList.astro";
+
+
+interface BentoCard {
+  imageSrc: any;
+  imageAlt: string;
+  heading: string;
+  title: string;
+  description: string;
+  /** e.g. "lg:col-span-3", "lg:col-span-2" */
+  gridColClass: string;
+  /** e.g. "object-left", "object-right" */
+  objectPosition?: string;
+}
+
+interface BentoProps {
+  title: string;
+  subtitle: string;
+  cards: BentoCard[];
+}
+
+interface ContentProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  paragraph1: string;
+  cards: {
+    icon: any;
+    title: string;
+    body: string;
+  }[];
+  paragraph2: string;
+  subheading: string;
+  paragraph3: string;
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+}
+const content: ContentProps = {
+  title: 'Streamlined Revenue Operations',
+  subtitle: "Built for Sustainable Growth",
+  description: "We don’t just optimise your operations — we empower your business to thrive. From day one, we work closely with you to understand your revenue streams, customer journey, and growth objectives. Our approach is transparent, strategic, and designed to deliver measurable results — not just today, but for the future.",
+  paragraph1: "Every solution we provide is tailored to your unique needs — efficient, scalable, and built to drive sustainable growth. Whether you're refining existing processes or starting from scratch, we guide you through every step with clarity and purpose.",
+  cards: [
+    {
+      icon: clipboarddocumentlist,
+      title: "Collaborative strategy",
+      body: "We work with you to analyse your revenue processes, identify bottlenecks, and define clear goals for success.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Future-ready systems",
+      body: "We implement scalable tools and processes that align with your business objectives and adapt as you grow.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Outcome-driven optimisation",
+      body: "Our strategies focus on improving efficiency, increasing revenue, and delivering a seamless customer experience.",
+    },
+  ],
+  paragraph2: "We're your partners in success — not just consultants. Long after implementation, our solutions will continue to support your evolving business needs.",
+  subheading: "No guesswork. Just results.",
+  paragraph3: "We stay hands-on throughout, providing you with clarity, control, and confidence at every stage. The result? Revenue operations that are not only efficient and effective — but built to scale with your ambitions.",
+  testimonial: {
+    quote: "Partnering with Nudge The Web transformed our revenue operations. Their expertise and commitment to our success were evident at every step, and the results speak for themselves.",
+    name: "Brenna Goyette",
+    role: "@brenna"
+  }
+};
+
+
+---
+<MainLayout title="Revenue Operations" description="Revenue Operations Services">
+  
+  <ServiceHero 
+    title="Optimise Your Revenue Operations for Growth"
+    description="We streamline your revenue operations to drive efficiency, scalability, and sustainable growth. Our tailored solutions are designed to align with your business objectives and deliver measurable results."
+    button="Book a consultation"
+    alt="Revenue Operations"
+  />
+
+  <GridContent
+    title="Our Approach"
+    cards={[
+      {
+        icon: PaintBrush,
+        title: "Analysis & Strategy",
+        description: "We collaborate with you to analyse your revenue processes, identify bottlenecks, and develop a clear, actionable strategy tailored to your business goals."
+      },
+      {
+        icon: CodeBracket,
+        title: "Implementation",
+        description: "We implement scalable tools and processes that align with your objectives, ensuring your systems are future-ready and adaptable to growth."
+      },
+      {
+        icon: Check,
+        title: "Optimisation",
+        description: "We continuously optimise your operations to improve efficiency, increase revenue, and enhance the customer experience."
+      },
+      {
+        icon: RocketLaunch,
+        title: "Sustainable Growth",
+        description: "Our solutions are designed to support your business as it scales, ensuring long-term success and measurable outcomes."
+      }
+    ]}
+  />
+
+
+    <ContentTestimonial
+        {...content}
+    />
+
+        <Contact />
+	</main>
+</MainLayout>

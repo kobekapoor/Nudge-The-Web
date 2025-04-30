@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+const { title, subtitle, cards } = Astro.props;
+
+---
+
+<div class="bg-white pb-24 sm:pb-32">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-base/7 font-semibold text-orange">{title}</h2>
+    <p class="mt-2 max-w-lg text-pretty text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
+      {subtitle}
+    </p>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
+      {cards.map((card) => {
+        const delays = [100, 200, 300, 500, 700];
+        const delay = delays[cards.indexOf(card)]
+        return (
+        <div class={`relative ${card.gridColClass} intersect-once intersect:motion-preset-slide-up motion-delay-${delay}`}>
+          <div class="absolute inset-px bg-white"></div>
+          <div class="relative flex h-full flex-col overflow-hidden">
+            <Image
+              src={card.imageSrc}
+              alt={card.imageAlt}
+              class={`h-80 object-scale-down ob object-center`}
+            />
+            <div class="px-10 pb-4 -mt-4">
+              <h3 class="text-sm/4 font-semibold text-orange">{card.heading}</h3>
+              <p class="mt-2 text-lg font-medium tracking-tight text-gray-950">
+                {card.title}
+              </p>
+              <p class="mt-2 max-w-lg text-sm/6 text-gray-600">
+                {card.description}
+              </p>
+            </div>
+          </div>
+          <div class="pointer-events-none absolute inset-px shadow ring-1 ring-stone-300"></div>
+        </div>
+      )})}
+    </div>
+  </div>
+</div>

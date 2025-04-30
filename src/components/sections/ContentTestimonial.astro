@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+const { title, subtitle, description, paragraph1, cards, paragraph2, subheading, paragraph3, testimonial } = Astro.props;
+
+---
+
+<div class="relative isolate overflow-x-clip bg-white pb-24 sm:pb-32">
+  <div class="absolute -top-80 left-[max(6rem,33%)] -z-10 transform-gpu blur-xl sm:left-1/2 md:top-20 lg:ml-20 xl:top-0 xl:ml-56" aria-hidden="true">
+    <div class="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-orange to-blue-700 opacity-30" style="clip-path: polygon(63.1% 29.6%, 100% 17.2%, 76.7% 3.1%, 48.4% 0.1%, 44.6% 4.8%, 54.5% 25.4%, 59.8% 49.1%, 55.3% 57.9%, 44.5% 57.3%, 27.8% 48%, 35.1% 81.6%, 0% 97.8%, 39.3% 100%, 35.3% 81.5%, 97.2% 52.8%, 63.1% 29.6%)"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <p class="text-base/7 font-semibold text-orange">{subtitle}</p>
+      <h1 class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">{title}</h1>
+      <p class="mt-6 text-xl/8 text-gray-700">{description}</p>
+    </div>
+    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:mt-10 lg:max-w-none lg:grid-cols-12">
+      <div class="relative lg:order-last lg:col-span-5">
+        <figure class="border-l border-orange pl-8">
+          <blockquote class="text-xl/8 font-semibold tracking-tight text-gray-900">
+            <p>{testimonial?.quote}</p>
+          </blockquote>
+          <figcaption class="mt-8 flex gap-x-4">
+            <div class="text-sm/6">
+              <div class="font-semibold text-gray-900">{testimonial?.name}</div>
+              <div class="text-gray-600">{testimonial?.role}</div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="max-w-xl text-base/7 text-gray-700 lg:col-span-7">
+        <p>{paragraph2}</p>
+        <ul role="list" class="mt-8 max-w-xl space-y-8 text-gray-600">
+          {cards?.map((card) => {
+            const Icon = card.icon;
+            return (
+              <li class="flex gap-x-3">
+                <svg class="mt-1 size-5 flex-none text-orange" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                  <Icon class="size-6 fill-orange" data-favorite="true" id="id" />
+                </svg>
+                <span><strong class="font-semibold text-gray-900">{card.title}</strong> {card.description}</span>
+              </li>
+            )
+          })}
+          
+        </ul>
+        <p class="mt-8">{paragraph2}</p>
+        <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">{subheading}</h2>
+        <p class="mt-6">{paragraph3}</p>
+      </div>
+    </div>
+  </div>
+</div>

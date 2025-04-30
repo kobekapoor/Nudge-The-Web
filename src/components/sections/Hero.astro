@@ -1,0 +1,118 @@
+---
+import Section from "./Section.astro";
+import { Image } from "astro:assets";
+import HeroIlust from "../../assets/pics/hero.svg";
+
+import megaphone from "../../assets/hero/megaphone.svg";
+import heart from "../../assets/hero/heart.svg";
+import share from "../../assets/hero/share.svg";
+import play from "../../assets/hero/play.svg";
+import location from "../../assets/hero/location.svg";
+import star from "../../assets/hero/star.svg";
+import star2 from "../../assets/hero/star2.svg";
+import ring1 from "../../assets/hero/ring1.svg";
+import ring2 from "../../assets/hero/ring2.svg";
+import ring3 from "../../assets/hero/ring3.svg";
+
+import frontCirlce from "../../assets/hero/FrontCircle.svg";
+import backCircle from "../../assets/hero/BackCircle.svg";
+
+import smallCircle1 from "../../assets/hero/smallCircle1.svg";
+import smallCircle2 from "../../assets/hero/smallCircle2.svg";
+import smallCircle3 from "../../assets/hero/smallCircle3.svg";
+---
+
+<Section id="home">
+    <div class="relative flex flex-col items-center mt-2 md:flex-row" id="hero">
+        <div class="row items-center py-5 md:w-6/12 md:pb-20 md:pt-10">
+            <div class="text-left space-y-3">
+                <h1 class="intersect-once intersect:motion-preset-slide-right motion-delay-[.1s] text-5xl font-medium mb-16 leading-none md:text-6xl text-left md:mb-0">Expand Your Reach,  <br class="hidden md:block"> Multiply Your Impact</h1>
+                <div class="hidden md:block">
+
+                    <p class="intersect-once intersect:motion-preset-slide-right motion-delay-[.2s] mt-6 mb-8 text-lg font-normal leading-7 sm:mb-12 md:text-left md:pr-12">Our dual approach, featuring both vertical and horizontal scaling, is designed to not just boost your visibility but also optimise efficiency. Start your growth journey with us through a detailed audit that paves the way for smart, measurable scaling.</p>
+                    <div class="intersect-once intersect:motion-preset-slide-right motion-delay-[.3s] w-full justify-center md:justify-start items-center inline-flex">
+                        <a href="#contact" target="_blank" class="px-8 py-5 bg-zinc-900 hover:bg-white text-white hover:text-black text-xl font-normal leading-7">Book a consultation
+                        </a>
+                </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="w-full max-w-[520px] mx-auto py-5 md:py-50">
+
+            {/* Graphic */}
+            <div class="relative w-full aspect-[520/256]" style="left:6%">
+                <div class="absolute z-10 intersect-once intersect:motion-scale-in-[0.5] motion-rotate-in-[-10deg] motion-blur-in-[10px] motion-delay-[0.75s]/rotate motion-delay-[0.75s]/blur"  style="top:-22%; right: 30%; width:56%">
+                    <Image src={megaphone} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[4s]" alt="Megaphone" />
+                </div>
+
+                {/* Surrounding icons with floating animation */}
+                <div class="absolute z-20 motion-scale-in-[0.5] motion-delay-[1.2s] motion-translate-x-in-[-100%] motion-translate-y-in-[99%] motion-opacity-in-[0%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur blur motion-ease-spring-bouncier"  style="top:-38%; right: 25%; width: 17%" >
+                    <Image src={heart} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[4s] motion-delay-[1.2s]"alt="Heart" />
+                </div>
+
+                <div class="absolute z-20 motion-scale-in-[0.5] motion-delay-[1.3s] motion-translate-x-in-[-150%] motion-translate-y-in-[99%] motion-opacity-in-[0%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur blur motion-ease-spring-bouncier"  style="top: -9%; right: 13%; width: 17%" >
+                    <Image src={share} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[3.3s] motion-delay-[1.4s]" alt="Share" />
+                </div>
+                
+                <div class="absolute z-20 motion-scale-in-[0.5] motion-delay-[1.4s] motion-translate-x-in-[-130%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur blur motion-ease-spring-bouncier"  style="top: 17%; right: 5%; width: 17%" >
+                    <Image src={play} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[4.5s] motion-delay-[1.6s]" alt="Play" />
+                </div>
+                <div class="absolute z-20 motion-scale-in-[0.5] motion-delay-[1.5s] motion-translate-x-in-[-130%] motion-translate-y-in-[-50%] motion-opacity-in-[0%] motion-rotate-in-[-1080deg] motion-blur-in-[10px] scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur blur motion-ease-spring-bouncier"  style="top: 48%; right: 12%; width: 17%">
+                    <Image src={location} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[3.5s] motion-delay-[1.8s]" alt="Location" />
+                </div>
+
+                <div class="absolute z-20 motion-delay-[1s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 10%; right: 36%; width: 61%" >
+                    <Image src={frontCirlce} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[5s] motion-delay-[2s]" alt="Ring" />
+                </div>
+                <div class="absolute z-0 motion-delay-[1s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 10%; right: 36%; width: 61%" >
+                    <Image src={backCircle} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[5s] motion-delay-[2s]" alt="Ring" />
+                </div>
+
+                <div class="absolute z-20 motion-delay-[1.1s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 27%; right: 36%; width: 61%" >
+                    <Image src={frontCirlce} class="w-full h-auto motion-preset-oscillate-sm motion-duration-[3.7s] motion-delay-[1.8s]" alt="Ring" />
+                </div>
+                <div class="absolute z-0 motion-delay-[1.1s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 27%; right: 36%; width: 61%" >
+                    <Image src={backCircle} class="w-full h-auto  motion-preset-oscillate-sm motion-duration-[3.7s] motion-delay-[1.8s]" alt="Ring" />
+                </div>
+
+                <div class="absolute z-20 motion-delay-[1.2s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 39%; right: 36%; width: 61%" >
+                    <Image src={frontCirlce} class="w-full h-auto  motion-preset-oscillate-sm motion-duration-[4.7s] motion-delay-[1.5s]" alt="Ring" />
+                </div>
+                <div class="absolute z-0 motion-delay-[1.2s] motion-scale-in-[0.5] motion-translate-x-in-[0%] motion-translate-y-in-[50%] motion-opacity-in-[0%] motion-duration-[0.68s]/scale motion-delay-[0.15s]/scale motion-delay-[1.2s]/opacity motion-duration-1000/opacity"  style="top: 39%; right: 36%; width: 61%" >
+                    <Image src={backCircle} class="w-full h-auto  motion-preset-oscillate-sm motion-duration-[4.7s] motion-delay-[1.5s]" alt="Ring" />
+                </div>
+                
+                <div class="absolute z-20 motion-delay-[1.2s] motion-scale-in-[0%]" style="top: 20%; left: -3%; width: 5%;" >
+                    <Image src={smallCircle1} class="w-full h-auto motion-preset-oscillate motion-duration-[4s] motion-delay-[1.5s]" alt="Small Circle" />
+                </div>
+                <div class="absolute z-10 motion-delay-[1.3s] motion-scale-in-[0%]" style="bottom: -10%; right: 45%; width: 4%" >
+                    <Image src={smallCircle2} class="w-full h-auto motion-preset-oscillate motion-duration-[3.7s] motion-delay-[1.2s]" alt="Small Circle" />
+                </div>
+                <div class="absolute z-20 motion-delay-[1.1s] motion-scale-in-[0%]" style="top: -7%; left: 10%; width: 8%" >
+                    <Image src={smallCircle3} class="w-full h-auto motion-preset-oscillate motion-duration-[3.9s] motion-delay-[1.4s]" alt="Small Circle" />
+                </div>
+
+                <div class="absolute z-20 motion-delay-[1.8s] motion-scale-in-[0%] motion-rotate-in-180" style="top: 120%; right: 50%; width: 10%">
+                    <Image src={star} class="w-full h-auto motion-preset-oscillate motion-duration-[4.2s] motion-delay-[1.6s]" alt="Star" />
+                </div>
+                <div class="absolute z-20 motion-delay-[1.7s] motion-scale-in-[0%] -motion-rotate-in-180" style="top: 85%; right: 75%; width: 20%">
+                    <Image src={star2} class="w-full h-auto motion-preset-oscillate motion-duration-[4.7s] motion-delay-[1.7s]" alt="Star" />
+                </div>     
+            </div>
+
+        </div>
+
+        <div class="block md:hidden py-5 mt-16 space-y-6">
+            <p class="intersect-once intersect:motion-preset-slide-right motion-delay-[.3s] mt-6 mb-8 text-lg font-normal leading-7 sm:mb-12 md:text-left md:pr-12">Our dual approach, featuring both vertical and horizontal scaling, is designed to not just boost your visibility but also optimise efficiency. Start your growth journey with us through a detailed audit that paves the way for smart, measurable scaling.</p>
+                <div class="intersect-once intersect:motion-preset-slide-right motion-delay-[.3s] w-full justify-center md:justify-start items-center inline-flex">
+                    <a href="#contact" target="_blank" class="px-8 py-5 w-full text-center bg-zinc-900 hover:bg-white text-white hover:text-black text-xl font-normal leading-7">Book a consultation
+                    </a>
+                </div>
+          </div>
+    </div>
+</Section>
+  
+  <style>
+    
+  </style>

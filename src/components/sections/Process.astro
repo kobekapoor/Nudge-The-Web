@@ -1,0 +1,17 @@
+---
+import Accordion from "../ui/Accordion.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+import Section from "./Section.astro";
+
+const description = "Scale Your Business with Nudge The Web";
+---
+
+<Section id="process">
+  <div class="">
+    <SectionTitle
+      sectionTitle="Our Working Process"
+      description={description}
+    />
+    <Accordion />
+  </div>
+</Section>
