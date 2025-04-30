@@ -6,7 +6,7 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://positivustheme.vercel.app",
+  site: "https://www.nudgetheweb.com/",
   vite: {
     plugins: [tailwindcss({ config: "./tailwind.config.mjs" })],
   },
