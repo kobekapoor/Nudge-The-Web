@@ -1,0 +1,43 @@
+---
+import AccordionItem from "./AccordionItem.astro";
+
+const content = [
+{
+  index: 1,
+  title: "Audit & Set KPIs",
+  description: "We start by understanding your business's unique metrics and objectives, setting the stage for tailored scaling strategies."
+},
+{
+  index: 2,
+  title: "Scaling Strategy Creation",
+  description: "Our team of experts will develop a comprehensive scaling strategy that leverages your strengths and addresses your weaknesses."
+},
+{
+  index: 3,
+  title: "Implementation & Monitoring",
+  description: "We will work with you to implement the strategy and monitor its progress, making adjustments as needed to ensure success."
+},
+{
+  index: 4,
+  title: "Optimization & Growth",
+  description: "As your business grows, we will continue to optimize your strategies to ensure continued success and growth."
+},
+{
+  index: 5,
+  title: "Celebrate!",
+  description: "Watch your business grow and celebrate your success with Nudge The Web!"
+}
+];
+---
+
+{
+  content.map((item) => {
+    return (
+      <AccordionItem
+        index={item.index}
+        title={item.title}
+        description={item.description}
+      />
+    );
+  })
+}

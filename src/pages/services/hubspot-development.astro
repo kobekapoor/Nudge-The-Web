@@ -1,0 +1,133 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import Contact from "../../components/sections/Contact.astro";
+import GridContent from "../../components/sections/GridContent.astro";
+import PaintBrush      from 'astro-heroicons/solid/PaintBrush.astro';
+import CodeBracket     from 'astro-heroicons/solid/CodeBracket.astro';
+import Check           from 'astro-heroicons/solid/Check.astro';
+import RocketLaunch    from 'astro-heroicons/solid/RocketLaunch.astro';
+import analytics from "../../assets/pics/Analytics.png";
+import seo from "../../assets/pics/SEO.png";
+import lighthouse from "../../assets/pics/Lighthouse.png";
+import conversion from "../../assets/pics/Conversion.png";
+import cms from "../../assets/pics/CMS.png";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import Bento from "../../components/sections/Bento.astro";
+import ContentTestimonial from "../../components/sections/ContentTestimonial.astro";
+import clipboarddocumentlist  from "astro-heroicons/solid/ClipboardDocumentList.astro";
+
+
+interface BentoCard {
+  imageSrc: any;
+  imageAlt: string;
+  heading: string;
+  title: string;
+  description: string;
+  /** e.g. "lg:col-span-3", "lg:col-span-2" */
+  gridColClass: string;
+  /** e.g. "object-left", "object-right" */
+  objectPosition?: string;
+}
+
+interface BentoProps {
+  title: string;
+  subtitle: string;
+  cards: BentoCard[];
+}
+
+interface ContentProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  paragraph1: string;
+  cards: {
+    icon: any;
+    title: string;
+    body: string;
+  }[];
+  paragraph2: string;
+  subheading: string;
+  paragraph3: string;
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+}
+const content: ContentProps = {
+  title: 'Streamlined HubSpot Solutions',
+  subtitle: "Empowering Your Growth",
+  description: "Our HubSpot development services are designed to help your business thrive. From custom integrations to tailored modules, we ensure your HubSpot platform is optimized for success. Partner with us to unlock the full potential of HubSpot and drive measurable results.",
+  paragraph1: "We specialize in creating scalable, efficient, and user-friendly HubSpot solutions that align with your business goals. Whether you're starting fresh or enhancing your existing setup, we provide expert guidance every step of the way.",
+  cards: [
+    {
+      icon: clipboarddocumentlist,
+      title: "Strategic Planning",
+      body: "We collaborate with you to understand your business needs and craft a HubSpot strategy that delivers results.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Custom Integrations",
+      body: "Seamlessly connect HubSpot with your existing tools and systems to streamline workflows and improve efficiency.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Optimized Performance",
+      body: "Our solutions are built to enhance user experience, improve conversions, and drive business growth.",
+    },
+  ],
+  paragraph2: "With our expertise, your HubSpot platform becomes a powerful tool for growth. We ensure it evolves with your business, delivering value long after implementation.",
+  subheading: "Results-Driven Development",
+  paragraph3: "We prioritize transparency, collaboration, and measurable outcomes. The result? A HubSpot solution that not only meets your expectations but exceeds them.",
+  testimonial: {
+    quote: "We've had the pleasure of working with Kobe for several years, and he has consistently delivered outstanding results. From CRM set up and management to driving exceptional results from our digital marketing lead generation and brand campaigns. We've thrown some challenging projects his way and he’s tackled them with intelligence, patience, and strategic insight. His ability to navigate complex problems and provide effective solutions has been invaluable to our group. We highly recommend Kobe to anyone looking for a knowledgeable and reliable partner in digital marketing and CRM systems.",
+    name: "Sandy Lennart",
+    role: "Marketing Director at Scott Park Group",
+  }
+};
+
+---
+
+<MainLayout title="HubSpot Development" description="HubSpot Development Services">
+	
+    <ServiceHero 
+      title="Transform Your Business with HubSpot Development"
+      description="We specialize in creating custom HubSpot solutions that streamline your operations, enhance customer engagement, and drive growth. From integrations to custom modules, we’ve got you covered."
+      button="Get Started with HubSpot"
+      alt="HubSpot Development Services"
+    />
+
+      <GridContent
+       title="Our Expertise in HubSpot Development"
+      cards={[
+      {
+      icon: PaintBrush,
+      title: "Custom Themes",
+      description: "We design and develop bespoke HubSpot themes that reflect your brand identity and deliver an exceptional user experience."
+      },
+      {
+      icon: CodeBracket,
+      title: "Custom Applications",
+      description: "We build tailored HubSpot apps and integrations to enhance functionality and streamline your business processes."
+      },
+      {
+      icon: Check,
+      title: "Quality Assurance",
+      description: "Our rigorous testing ensures that your HubSpot solutions are reliable, secure, and optimized for performance."
+      },
+      {
+      icon: RocketLaunch,
+      title: "Effortless Deployment",
+      description: "We handle the deployment process seamlessly, ensuring your custom HubSpot solutions are ready to drive results from day one."
+      }
+      ]}
+    />
+
+    <ContentTestimonial
+        {...content}
+    />
+
+        <Contact />
+	</main>
+</MainLayout>

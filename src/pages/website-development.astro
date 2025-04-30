@@ -1,0 +1,214 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Sponsors from "../components/sections/Sponsors.astro";
+import Services from "../components/sections/Services.astro";
+import Proposal from "@/components/sections/Proposal.astro";
+import webdev from "../assets/pics/web-dev.png";
+import { Image } from "astro:assets";
+
+---
+
+<MainLayout title="Website Development">
+    <main class="space-y-20">
+      <!-- Hero unchanged… -->
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-3">
+        <div class="relative flex flex-col-reverse items-center md:flex-row" id="hero">
+          <div class="row items-center py-5 md:pb-20 md:pt-10">
+            <div class="text-center space-y-10">
+              <h2 class="text-5xl font-medium leading-none md:text-6xl">
+                Scale Your Business With a Beautiful Website
+              </h2>
+              <p class="mt-6 mb-8 text-xl font-normal leading-7 sm:mb-12">
+                We design and develop websites that are tailored to your business needs. Our websites are fast, secure, and mobile-friendly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <section id="how-we-build">
+      <div class="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-16 lg:items-start">
+            <!-- Text column -->
+            <div class="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+              <h3 class="text-base/7 font-semibold text-orange">How We Build</h3>
+              <p class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                Websites That Perform
+              </p>
+              <p class="mt-6 text-lg/8 text-gray-600">
+                We build websites that are fast, secure, mobile‑friendly, and optimised to convert visitors into customers.
+              </p>
+              <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-900">
+                    <svg class="absolute left-1 top-1 size-5 text-orange" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M3 7h14M3 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Design
+                  </dt>
+                  <dd class="inline">
+                    We design websites that are visually appealing and easy to navigate. Our websites are designed to convert visitors into customers.
+                  </dd>
+                </div>
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-900">
+                    <svg class="absolute left-1 top-1 size-5 text-orange" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M2 10l6-6 6 6-6 6-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    Development
+                  </dt>
+                  <dd class="inline">
+                    We develop websites using the latest technologies and best practices. Our websites are fast, secure, and mobile-friendly.
+                  </dd>
+                </div>
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-900">
+                    <svg class="absolute left-1 top-1 size-5 text-orange" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+                      <path d="M9 12l2 2 4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Testing
+                  </dt>
+                  <dd class="inline">
+                    We test websites on multiple devices and browsers to ensure they work perfectly for all users. Our websites are tested for speed, security, and performance.
+                  </dd>
+                </div>
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-900">
+                    <svg class="absolute left-1 top-1 size-5 text-orange" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M5 12h10M10 5l5 7-5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Launch
+                  </dt>
+                  <dd class="inline">
+                    We launch websites on secure and reliable servers. Our websites are monitored 24/7 to ensure they are always online and accessible.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+      
+            <!-- Image column -->
+            <div class="sm:px-6 lg:px-0">
+            <div class="relative">
+                <div class={`absolute -top-2 left-2 -right-2 bottom-2 border-2 border-stone-700 z-10`}></div>
+                <div class="relative isolate overflow-hidden bg-amber-400 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none border-0">
+                    <div
+                    class="absolute -inset-y-px -left-3 -z-10 w-full origin-bottom-left skew-x-[-30deg] bg-amber-50 opacity-20 "
+                    aria-hidden="true"
+                    ></div>
+                    <Image
+                    src={webdev}
+                    alt="Website development example"
+                    width="1216"
+                    height="722"
+                    class="-mb-12 w-[57rem] max-w-none"
+                    />
+                    <div class="pointer-events-none absolute inset-0" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+      </section>
+      
+      <section class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+          <h2 class="text-center text-base/7 font-semibold text-amber-600">Deploy faster</h2>
+          <p class="mx-auto mt-2 max-w-lg text-4xl font-semibold tracking-tight text-gray-950 text-center sm:text-5xl">
+            Everything you need for a great website
+          </p>
+          <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+            <!-- Mobile friendly -->
+            <div class="relative lg:row-span-2">
+              <div class="absolute inset-px bg-white"></div>
+              <div class="relative flex h-full flex-col overflow-hidden border border-gray-200">
+                <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                  <p class="text-lg font-medium tracking-tight text-gray-950">Mobile friendly</p>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+                  </p>
+                </div>
+                <div class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                    <div class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
+                      <img class="size-full object-cover object-top" src="https://tailwindcss.com/plus-assets/img/component-images/bento-03-mobile-friendly.png" alt="">
+                    </div>
+                  </div>
+              </div>
+              <div class="absolute inset-px shadow ring-1 ring-black/5 pointer-events-none"></div>
+            </div>
+      
+            <!-- Performance -->
+            <div class="relative lg:row-span-1">
+              <div class="absolute inset-px bg-white"></div>
+              <div class="relative flex h-full flex-col overflow-hidden border border-gray-200">
+                <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                  <p class="text-lg font-medium tracking-tight text-gray-950">Performance</p>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.
+                  </p>
+                </div>
+                <div class="flex flex-1 items-center justify-center px-8 sm:px-10">
+                  <img src="https://tailwindcss.com/plus-assets/img/component-images/bento-03-performance.png"
+                       alt=""
+                       class="w-full max-w-xs">
+                </div>
+              </div>
+              <div class="absolute inset-px shadow ring-1 ring-black/5 pointer-events-none"></div>
+            </div>
+      
+            <!-- Security -->
+            <div class="relative lg:col-start-2 lg:row-start-2">
+              <div class="absolute inset-px bg-white"></div>
+              <div class="relative flex h-full flex-col overflow-hidden border border-gray-200">
+                <div class="px-8 pt-8 sm:px-10 sm:pt-10">
+                  <p class="text-lg font-medium tracking-tight text-gray-950">Security</p>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.
+                  </p>
+                </div>
+                <div class="flex flex-1 items-center px-8">
+                  <img src="https://tailwindcss.com/plus-assets/img/component-images/bento-03-security.png"
+                       alt=""
+                       class="h-40 object-cover">
+                </div>
+              </div>
+              <div class="absolute inset-px shadow ring-1 ring-black/5 pointer-events-none"></div>
+            </div>
+      
+            <!-- Powerful APIs -->
+            <div class="relative lg:row-span-2">
+              <div class="absolute inset-px bg-white"></div>
+              <div class="relative flex h-full flex-col overflow-hidden border border-gray-200">
+                <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+                  <p class="text-lg font-medium tracking-tight text-gray-950">Powerful APIs</p>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget sem sodales gravida.
+                  </p>
+                </div>
+                <div class="relative flex-1 overflow-hidden">
+                  <div class="absolute inset-x-10 top-10 bottom-0 bg-gray-900 border-t-[3px] shadow-2xl">
+                    <div class="flex bg-gray-800/40 ring-1 ring-white/5">
+                      <div class="flex text-sm font-medium text-gray-400 border-r border-gray-600/10 px-4 py-2">
+                        NotificationSetting.jsx
+                      </div>
+                      <div class="flex text-sm font-medium text-gray-400 px-4 py-2">
+                        App.jsx
+                      </div>
+                    </div>
+                    <div class="px-6 pt-6 pb-14">
+                      <!-- Your code example -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="absolute inset-px shadow ring-1 ring-black/5 pointer-events-none"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+  
+      <Proposal />
+    </main>
+  </MainLayout>
+  

@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import s1 from "../../assets/company/google-ads.webp";
+import s2 from "../../assets/company/google-analytics.svg";
+import s3 from "../../assets/company/hubspot.svg";
+import s4 from "../../assets/company/meta.svg";
+import s5 from "../../assets/company/react.svg";
+import Section from "./Section.astro";
+
+const sponsors = [
+  { logo: s5, alt: "Dribble logo" },
+  { logo: s4, alt: "HubSpot logo" },
+  { logo: s3, alt: "Notion logo" },
+  { logo: s2, alt: "Netflix logo" },
+  { logo: s1, alt: "Zoom logo" },
+];
+---
+
+<Section id="sponsors">
+  <div class="flex-row items-center mt-[70px]">
+    <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 place-items-center">
+      {sponsors.map((sponsor) => (
+        <div
+          class="p-4 grayscale transition duration-200 hover:grayscale-0"
+        >
+          <Image
+            src={sponsor.logo}
+            alt={sponsor.alt}
+            loading="lazy"
+            class="w-40 h-auto"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

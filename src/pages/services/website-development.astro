@@ -1,0 +1,186 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import Contact from "../../components/sections/Contact.astro";
+import GridContent from "../../components/sections/GridContent.astro";
+import PaintBrush      from 'astro-heroicons/solid/PaintBrush.astro';
+import CodeBracket     from 'astro-heroicons/solid/CodeBracket.astro';
+import Check           from 'astro-heroicons/solid/Check.astro';
+import RocketLaunch    from 'astro-heroicons/solid/RocketLaunch.astro';
+import analytics from "../../assets/pics/Analytics.png";
+import seo from "../../assets/pics/SEO.png";
+import lighthouse from "../../assets/pics/Lighthouse.png";
+import conversion from "../../assets/pics/Conversion.png";
+import cms from "../../assets/pics/CMS.png";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import Bento from "../../components/sections/Bento.astro";
+import ContentTestimonial from "../../components/sections/ContentTestimonial.astro";
+import clipboarddocumentlist  from "astro-heroicons/solid/ClipboardDocumentList.astro";
+
+
+interface BentoCard {
+  imageSrc: any;
+  imageAlt: string;
+  heading: string;
+  title: string;
+  description: string;
+  /** e.g. "lg:col-span-3", "lg:col-span-2" */
+  gridColClass: string;
+  /** e.g. "object-left", "object-right" */
+  objectPosition?: string;
+}
+
+interface BentoProps {
+  title: string;
+  subtitle: string;
+  cards: BentoCard[];
+}
+
+interface ContentProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  paragraph1: string;
+  cards: {
+    icon: any;
+    title: string;
+    body: string;
+  }[];
+  paragraph2: string;
+  subheading: string;
+  paragraph3: string;
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+}
+
+const content: ContentProps = {
+title: 'A Better Workflow',
+subtitle: "Built for Growth",
+description: "We don’t just build websites — we build momentum. From day one, we work closely with you to understand your business, your customers, and your goals. Our process is transparent, strategic, and designed to deliver a website that works — not just on launch day, but for years to come.",
+paragraph1: "Every site we create is made to last — fast, flexible, and built to scale with your business. Whether it's your first website or a major overhaul, we guide you through every step with clarity and purpose.",
+cards: [
+    {
+        icon: clipboarddocumentlist,
+        title: "Collaborative planning",
+        body: "We take the time to understand your brand, your market, and what success looks like to you.",
+    },
+    {
+        icon: clipboarddocumentlist,
+        title: "Future-proof foundations",
+        body: "Built with clean, scalable code, SEO best practices, and CMS flexibility so your site can grow with you.",
+    },
+    {
+        icon: clipboarddocumentlist,
+        title: "Optimised for outcomes",
+        body: "Our design and content strategy focuses on performance, conversions, and user experience — not fluff.",
+    },
+],
+paragraph2: "We're your partners in growth — not just developers. Long after launch, your site will continue to perform, adapt, and support your evolving business needs.",
+subheading: "No surprises. Just results.",
+paragraph3: "We stay hands-on throughout, giving you clarity, control, and confidence at every step. The result? A site that’s not only beautiful and fast — but built with purpose.",
+testimonial: {
+    quote: "Working with Nudge The Web felt more like a partnership than a project. We felt guided the whole way through, and the final product exceeded every expectation.",
+    name: "Brenna Goyette",
+    role: "@brenna"
+}
+};
+
+
+const props: BentoProps = {
+  title: 'What Makes Our Websites Unique?',
+  subtitle: 'Quality features that actually help you scale',
+  cards: [
+    {
+      imageSrc: analytics,
+      imageAlt: 'Analytics',
+      heading: 'Attribution Tracking',
+      title: 'Know exactly what’s working — and what’s not.',
+      description: 'Track visitors and conversions to measure real ROI. Detailed reports empower informed decisions.',
+      gridColClass: 'lg:col-span-3',
+      objectPosition: 'object-left',
+    },
+    {
+      imageSrc: lighthouse,
+      imageAlt: '',
+      heading: 'Speed & Performance Optimisation',
+      title: 'Lightning-fast sites that users (and Google) love.',
+      description: 'Fast-loading websites improve SEO, user experience, and conversion rates. Every site we build is optimised for speed.',
+      gridColClass: 'lg:col-span-3',
+      objectPosition: 'object-left',
+    },
+    {
+      imageSrc: conversion,
+      imageAlt: '',
+      heading: 'Conversion-Ready Design',
+      title: 'Every pixel designed to drive action.',
+      description: "Our sites are strategically designed to guide visitors toward taking action — whether it's a call, form, or sale.",
+      gridColClass: 'lg:col-span-2',
+      objectPosition: 'object-left',
+    },
+    {
+      imageSrc: seo,
+      imageAlt: '',
+      heading: 'Built-In SEO Foundations',
+      title: 'Conversion-Ready Design',
+      description: 'We implement technical SEO best practices during development to give your site the best chance to rank.',
+      gridColClass: 'lg:col-span-2',
+      objectPosition: 'object-left',
+    },
+    {
+      imageSrc: cms,
+      imageAlt: '',
+      heading: 'Scalable & Editable CMS',
+      title: 'Take control of your website without tech headaches.',
+      description: 'Built on easy-to-use CMS platforms so you can update, expand, and manage your site without needing a developer.',
+      gridColClass: 'lg:col-span-2',
+      objectPosition: 'object-left',
+    }
+  ],
+};
+---
+
+<MainLayout title="Website Development" description="Website Development Services">
+    <ServiceHero 
+        title="Scale Your Business With a Beautiful Website"
+        description="We design and develop websites that are tailored to your business needs. Our websites are fast, secure, and mobile-friendly."
+        button="Book a consultation"
+        alt="Website Development"
+    />
+
+        <GridContent
+         title="Our Process"
+      cards={[
+        {
+          icon: PaintBrush,
+          title: "Design",
+          description: "We design websites that are visually appealing and easy to navigate. Our websites are designed to convert visitors into customers."
+        },
+        {
+          icon: CodeBracket,
+          title: "Development",
+          description: "We develop websites using the latest technologies and best practices. Our websites are fast, secure, and mobile-friendly."
+        },
+        {
+          icon: Check,
+          title: "Testing",
+          description: "We test websites on multiple devices and browsers to ensure they work perfectly for all users. Our websites are tested for speed, security, and ."
+        },
+        {
+          icon: RocketLaunch,
+          title: "Launch",
+          description: "We launch websites on secure and reliable servers. Our websites are monitored 24/7 to ensure they are always online and accessible."
+        }
+      ]}
+    />
+
+    <Bento {...props} />
+    <ContentTestimonial
+        {...content}
+    />
+
+        <Contact />
+	</main>
+</MainLayout>

@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+const {title, cards} = Astro.props;
+---
+
+<div class="bg-white mb-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <h2 class="col-span-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          {title}
+        </h2>
+        <dl class="col-span-3 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2">
+          {cards.map((card) => {
+            const Icon = card.icon;
+            const delays = [150, 300, 700, 1000];
+            const delay = delays[cards.indexOf(card) % delays.length];
+            return (
+              <div class={`animate-in fade-in-0 slide-in-from-bottom-9 duration-1000 delay-${delay}`}>
+                <dt class="text-base/7 font-semibold text-gray-900">
+                    <div class="mb-6 flex size-10 items-center justify-center bg-orange transition-transform hover:scale-110 hover:rotate-3">
+                      <Icon class="size-6 fill-white" data-favorite="true" id="id" />
+                    </div>
+                    {card.title}
+                </dt>
+                <dd class="mt-1 text-base/7 text-gray-600">{card.description}</dd>
+                </div>
+            )})}
+        </dl>
+      </div>
+    </div>
+  </div>
+  

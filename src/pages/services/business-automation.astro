@@ -1,0 +1,132 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import Contact from "../../components/sections/Contact.astro";
+import GridContent from "../../components/sections/GridContent.astro";
+import PaintBrush      from 'astro-heroicons/solid/PaintBrush.astro';
+import CodeBracket     from 'astro-heroicons/solid/CodeBracket.astro';
+import Check           from 'astro-heroicons/solid/Check.astro';
+import RocketLaunch    from 'astro-heroicons/solid/RocketLaunch.astro';
+import analytics from "../../assets/pics/Analytics.png";
+import seo from "../../assets/pics/SEO.png";
+import lighthouse from "../../assets/pics/Lighthouse.png";
+import conversion from "../../assets/pics/Conversion.png";
+import cms from "../../assets/pics/CMS.png";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import Bento from "../../components/sections/Bento.astro";
+import ContentTestimonial from "../../components/sections/ContentTestimonial.astro";
+import clipboarddocumentlist  from "astro-heroicons/solid/ClipboardDocumentList.astro";
+
+
+interface BentoCard {
+  imageSrc: any;
+  imageAlt: string;
+  heading: string;
+  title: string;
+  description: string;
+  /** e.g. "lg:col-span-3", "lg:col-span-2" */
+  gridColClass: string;
+  /** e.g. "object-left", "object-right" */
+  objectPosition?: string;
+}
+
+interface BentoProps {
+  title: string;
+  subtitle: string;
+  cards: BentoCard[];
+}
+
+interface ContentProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  paragraph1: string;
+  cards: {
+    icon: any;
+    title: string;
+    body: string;
+  }[];
+  paragraph2: string;
+  subheading: string;
+  paragraph3: string;
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+}
+const content: ContentProps = {
+  title: 'Streamlined Business Automation',
+  subtitle: "Designed for Efficiency",
+  description: "We don’t just automate processes — we empower your business to operate smarter. From the outset, we collaborate with you to identify inefficiencies, optimise workflows, and implement tailored automation solutions. Our approach is transparent, strategic, and focused on delivering long-term value.",
+  paragraph1: "Every automation solution we provide is built to enhance productivity, reduce manual effort, and scale with your business. Whether you're starting fresh or refining existing processes, we guide you through every step with clarity and expertise.",
+  cards: [
+    {
+      icon: clipboarddocumentlist,
+      title: "Customised Planning",
+      body: "We take the time to understand your unique business needs, challenges, and goals to craft the perfect automation strategy.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Scalable Solutions",
+      body: "Our automation systems are designed to grow with your business, ensuring flexibility and adaptability for future needs.",
+    },
+    {
+      icon: clipboarddocumentlist,
+      title: "Outcome-Focused Implementation",
+      body: "We prioritise solutions that deliver measurable results, improving efficiency, accuracy, and overall business performance.",
+    },
+  ],
+  paragraph2: "We’re not just service providers — we’re your partners in innovation. Our automation solutions are built to evolve with your business, ensuring sustained success.",
+  subheading: "No guesswork. Just results.",
+  paragraph3: "We stay involved throughout the process, providing you with clarity, control, and confidence at every stage. The result? A streamlined operation that saves time, reduces costs, and drives growth.",
+  testimonial: {
+    quote: "Partnering with Nudge The Web for our business automation was a game-changer. Their expertise and dedication transformed our operations, and the results speak for themselves.",
+    name: "Brenna Goyette",
+    role: "@brenna"
+  }
+};
+
+
+---
+
+<MainLayout title="Business Automation" description="Business Automation Services">
+  <ServiceHero 
+    title="Streamline Your Business with Automation"
+    description="We provide tailored automation solutions that optimise your workflows, enhance efficiency, and drive growth. Let us help you work smarter, not harder."
+    button="Get Started"
+    alt="Business Automation"
+  />
+
+  <GridContent
+    title="Our Approach"
+    cards={[
+      {
+        icon: PaintBrush,
+        title: "Discovery & Planning",
+        description: "We collaborate with you to understand your unique business needs and identify areas where automation can deliver the most value."
+      },
+      {
+        icon: CodeBracket,
+        title: "Custom Development",
+        description: "Our team develops bespoke automation solutions using cutting-edge technologies, ensuring they align perfectly with your goals."
+      },
+      {
+        icon: Check,
+        title: "Rigorous Testing",
+        description: "We thoroughly test our solutions to ensure they are reliable, efficient, and seamlessly integrate with your existing systems."
+      },
+      {
+        icon: RocketLaunch,
+        title: "Implementation & Support",
+        description: "We implement the automation solutions and provide ongoing support to ensure they continue to deliver results as your business evolves."
+      }
+    ]}
+  />
+    <ContentTestimonial
+        {...content}
+    />
+
+        <Contact />
+	</main>
+</MainLayout>

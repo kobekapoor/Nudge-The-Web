@@ -1,0 +1,87 @@
+---
+import SectionTitle from "../ui/SectionTitle.astro";
+import ServiceCard from "../ui/ServiceCard.astro";
+import Section from "./Section.astro";
+
+import c1 from "../../assets/pics/card-pic1.png";
+import c2 from "../../assets/pics/card-pic2.png";
+import c3 from "../../assets/pics/card-pic3.png";
+import c4 from "../../assets/pics/card-pic4.png";
+import c5 from "../../assets/pics/card-pic5.png";
+import c6 from "../../assets/pics/card-pic6.png";
+import { late } from "astro:schema";
+
+const cards = [
+  {
+    index: 1,
+    titleTop: "Website",
+    titleBottom: "Development",
+    img: c1,
+    alt: "Website Development",
+    link: "services/website-development",
+  },
+  {
+    index: 2,
+    titleTop: "HubSpot",
+    titleBottom: "Development",
+    img: c2,
+    alt: "HubSpot Development",
+    link: "services/hubspot-development",
+  },
+  {
+    index: 3,
+    titleTop: "Revenue",
+    titleBottom: "Operations",
+    img: c3,
+    alt: "Revenue Operations",
+    link: "services/revenue-operations",
+  },
+  {
+    index: 1,
+    titleTop: "Business",
+    titleBottom: "Automation",
+    img: c4,
+    alt: "Business Automation",
+    link: "services/business-automation",
+  },
+  {
+    index: 2,
+    titleTop: "Paid",
+    titleBottom: "Advertising",
+    img: c5,
+    alt: "Paid Advertising",
+    link: "services/paid-advertising",
+  },
+  {
+    index: 3,
+    titleTop: "Analytics and",
+    titleBottom: "Tracking",
+    img: c6,
+    alt: "Analytics and Tracking",
+    link: "services/analytics-tracking",
+  },
+];
+
+const description =
+  "At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include";
+---
+
+<Section id="services">
+  <div class="mt-[70px] mb-5">
+    <SectionTitle sectionTitle="Services" description={description} />
+    <div class="grid lg:grid-cols-2 lg:grid-rows-3 gap-10">
+      {
+        cards.map((card) => (
+          <ServiceCard
+            index={card.index}
+            titleTop={card.titleTop}
+            titleBottom={card.titleBottom}
+            img={card.img}
+            alt={card.alt}
+            link={card.link}
+          />
+        ))
+      }
+    </div>
+  </div>
+</Section>
