@@ -31,7 +31,7 @@ const { title, subtitle, description, paragraph1, cards, paragraph2, subheading,
       <div class="max-w-xl text-base/7 text-gray-700 lg:col-span-7">
         <p>{paragraph2}</p>
         <ul role="list" class="mt-8 max-w-xl space-y-8 text-gray-600">
-          {cards?.map((card) => {
+          {cards?.map((card: any) => {
             const Icon = card.icon;
             return (
               <li class="flex gap-x-3">
