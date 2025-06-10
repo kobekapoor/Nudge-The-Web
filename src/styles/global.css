@@ -111,38 +111,38 @@
     }
   } */
 
-  @layer components {
+  @layer utilities {
     .btn-primary {
-      @apply bg-dark text-white px-[35px] py-5 transition-all duration-200;
+      @apply !bg-dark !text-white !px-[35px] !py-5 !transition-all !duration-200;
     }
     .btn-primary:hover {
-      @apply bg-orange text-black transform scale-105;
+      @apply !bg-orange !text-black !transform !scale-105;
     }
 
     .btn-secondary {
-      @apply bg-transparent text-black px-[35px] py-5 border border-solid border-black transition-all duration-200;
+      @apply !bg-transparent !text-black !px-[35px] !py-5 !border !border-solid !border-black !transition-all !duration-200;
     }
     .btn-secondary:hover {
-      @apply bg-black text-white border-orange transform scale-105;
+      @apply !bg-black !text-white !border-orange !transform !scale-105;
     }
 
     .btn-tertiary {
-      @apply bg-orange text-black px-[35px] py-5 transition-all duration-200;
+      @apply !bg-orange !text-black !px-[35px] !py-5 !transition-all !duration-200;
     }
     .btn-tertiary:hover {
-      @apply bg-white text-black transform scale-105;
+      @apply !bg-white !text-black !transform !scale-105;
     }
 
     .orangehead {
-      @apply bg-orange text-black px-[7px];
+      @apply !bg-orange !text-black !px-[7px];
     }
 
     .whitehead {
-      @apply bg-white text-black px-[7px];
+      @apply !bg-white !text-black !px-[7px];
     }
 
     .blackhead {
-      @apply bg-black text-white px-[7px];
+      @apply !bg-black !text-white !px-[7px];
     }
   }
 }
