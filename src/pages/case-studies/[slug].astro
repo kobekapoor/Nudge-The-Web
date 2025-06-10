@@ -1,0 +1,39 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getEntry } from 'astro:content';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error('Slug is required');
+}
+
+const entry = await getEntry('cases', slug);
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await entry.render();
+---
+<MainLayout title={entry.data.title}>
+    <main class="space-y-40 mb-40 pt-24">
+        <section class="bg-white">
+            <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1 lg:py-16 lg:px-3">
+                <div class="font-light text-gray-500 sm:text-lg">
+                    <a href="/case-studies" class="inline-flex items-center font-medium text-black hover:text-orange my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                        </svg>
+                        <span class="ml-1 font-bold text-lg">All Case Studies</span>
+                    </a>
+                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">{entry.data.title}</h2>
+                    <p class="mb-6">{entry.data.summary}</p>
+                    <div class="content">
+                        <Content />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</MainLayout>
