@@ -13,6 +13,16 @@ const blogCollection = defineCollection({
   }),
 });
 
+const caseCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    link: z.string().url(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
+  cases: caseCollection,
 };

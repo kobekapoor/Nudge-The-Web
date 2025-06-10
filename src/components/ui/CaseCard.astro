@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import Card from "./Card.astro";
+import larrow from "../../assets/icon3.svg";
+
+const { summary, link } = Astro.props;
+---
+<Card>
+  <div class="flex p-[60px] h-full bg-dark text-gray m-[1px] intersect-once intersect:motion-preset-slide-up">
+    <div class="flex flex-col gap-5">
+      <p>{summary}</p>
+      <a href={link} class="flex items-center gap-[15px]">
+        <span class="text-orange">Case Info</span>
+        <picture>
+          <Image src={larrow} alt="Arrow pointing up right" />
+        </picture>
+      </a>
+    </div>
+  </div>
+</Card>

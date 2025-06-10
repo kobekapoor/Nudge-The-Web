@@ -1,0 +1,63 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getEntry } from 'astro:content';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error('Slug is required');
+}
+
+const entry = await getEntry('cases', slug);
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await entry.render();
+---
+<MainLayout title={entry.data.title}>
+  <main class="space-y-40 mb-40 pt-24">
+    <!-- Hero -->
+    <section class="bg-white">
+      <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1 lg:py-16 lg:px-3">
+        <div class="font-light text-gray-500 sm:text-lg">
+          <a href="/case-studies" class="inline-flex items-center font-medium text-black hover:text-orange my-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            <span class="ml-1 font-bold text-lg">All Case Studies</span>
+          </a>
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 intersect-once intersect:motion-preset-slide-up">{entry.data.title}</h2>
+          <p class="mb-6 intersect-once intersect:motion-preset-slide-up motion-delay-[.1s]">{entry.data.summary}</p>
+          <a href={entry.data.link} class="btn-primary inline-flex items-center gap-2 intersect-once intersect:motion-preset-slide-up motion-delay-[.2s]" target="_blank" rel="noopener noreferrer">
+            Visit Project
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v16M4 20L20 4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="bg-white">
+      <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-3">
+        <div class="font-light text-gray-500 sm:text-lg">
+          <h3 class="mb-4 text-2xl font-bold text-gray-900 intersect-once intersect:motion-preset-slide-up">Overview</h3>
+          <div class="content intersect-once intersect:motion-preset-slide-up motion-delay-[.1s]">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="bg-dark text-white">
+      <div class="py-16 px-4 mx-auto max-w-screen-xl lg:px-3">
+        <h3 class="mb-4 text-2xl font-bold intersect-once intersect:motion-preset-slide-up">Results</h3>
+        <p class="intersect-once intersect:motion-preset-slide-up motion-delay-[.1s]">{entry.data.summary}</p>
+      </div>
+    </section>
+  </main>
+</MainLayout>
