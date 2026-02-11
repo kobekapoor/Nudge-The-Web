@@ -1,26 +1,26 @@
 [
-  {
-    "index": 1,
-    "name": "Sandy Lennart",
-    "role": "Marketing Director at Scott Park Group",
-    "comment": "We've had the pleasure of working with Kobe for several years, and he has consistently delivered outstanding results. From CRM set up and management to driving exceptional results from our digital marketing lead generation and brand campaigns. We've thrown some challenging projects his way and he’s tackled them with intelligence, patience, and strategic insight. His ability to navigate complex problems and provide effective solutions has been invaluable to our group. We highly recommend Kobe to anyone looking for a knowledgeable and reliable partner in digital marketing and CRM systems."
-  },
-  {
-    "index": 2,
-    "name": "Brigid Barbaro",
-    "role": "Marketing Director at Avenue Group",
-    "comment": "Working with Kobe has been great for our hospitality business and improving it’s tech side of things & developing our e-comm store. He’s keen to make clients happy, takes feedback well & adapts quickly to meet his clients needs. I’m positive to foresee a long-term business relationship with him."
-  },
-  {
-    "index": 3,
-    "name": "Gerry Wagner",
-    "role": "Owner at Inboda",
-    "comment": "Partnering with Kobe (Nudge The Web) has been a game-changer. He doesn’t just automate business processes—he anticipates what your business needs before you even see it. I’ve worked with him for nearly three years and have always appreciated his work ethic, strategic mindset, and outside-the-box thinking."
-  },
-  {
-    "index": 4,
-    "name": "Hayden McRae",
-    "role": "Owner at Craftwood Flooring Co.",
-    "comment": "Kobe (Nudge The Web) built us a website that not only looks amazing but actually works to convert. He understood our vision right away and translated it into a fast, modern site that’s easy to update and designed to grow with our business. Highly recommend."
-  }
+	{
+		"index": 1,
+		"name": "Declhan Lee",
+		"role": "Director of Operations at Circles of Hair",
+		"comment": "Kobe is awesome to work with. He helped us get our custom HubSpot to CRM connection up and running smoothly, and now we’re making the most of all the new data and insights."
+	},
+	{
+		"index": 2,
+		"name": "Ryan Matinca",
+		"role": "Owner at Power Audit",
+		"comment": "Nudge The Web organized all our marketing and advertising end-to-end. He set up our CRM, implemented smart automations, and managed both Google Ads and Meta with clear results. Always proactive, on top of every detail, and excellent at communicating, highly recommend."
+	},
+	{
+		"index": 3,
+		"name": "Gerry Wagner",
+		"role": "Owner at Inboda",
+		"comment": "Partnering with Kobe (Nudge The Web) has been a game-changer. He doesn’t just automate business processes—he anticipates what your business needs before you even see it. I’ve worked with him for nearly three years and have always appreciated his work ethic, strategic mindset, and outside-the-box thinking."
+	},
+	{
+		"index": 4,
+		"name": "Hayden McRae",
+		"role": "Owner at Craftwood Flooring Co.",
+		"comment": "Kobe (Nudge The Web) built us a website that not only looks amazing but actually works to convert. He understood our vision right away and translated it into a fast, modern site that’s easy to update and designed to grow with our business. Highly recommend."
+	}
 ]
