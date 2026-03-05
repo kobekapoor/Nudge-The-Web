@@ -1,0 +1,47 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Section from "../../components/sections/Section.astro";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import CaseStudyCard from "../../components/ui/CaseStudyCard.astro";
+import Contact from "../../components/sections/Contact.astro";
+import caseStudies from "../../data/caseStudies.json";
+---
+
+<MainLayout
+  title="Case Studies | Nudge The Web"
+  description="Real results for real businesses — see how Nudge The Web has helped clients grow through smarter websites, cleaner data, and streamlined operations."
+>
+  <Section id="case-studies">
+    <div class="pt-12 pb-20">
+
+      <div class="intersect-once intersect:motion-preset-slide-right">
+        <SectionTitle
+          sectionTitle="Case Studies"
+          description="Real results for real businesses. See how we've helped clients grow through smarter websites, cleaner data, and streamlined operations."
+        />
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        {caseStudies.map((cs, i) => (
+          <div
+            class={`intersect-once intersect:motion-preset-slide-right`}
+            style={`--motion-delay: ${i * 0.1}s`}
+          >
+            <CaseStudyCard
+              client={cs.client}
+              title={cs.title}
+              resultHeadline={cs.resultHeadline}
+              services={cs.services}
+              slug={cs.slug}
+              colorVariant={cs.colorVariant}
+              results={cs.results}
+            />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </Section>
+
+  <Contact />
+</MainLayout>

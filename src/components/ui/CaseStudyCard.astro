@@ -1,0 +1,61 @@
+---
+import Card from "./Card.astro";
+
+const { client, title, resultHeadline, services, slug, colorVariant, results } = Astro.props;
+
+// Colour scheme matches ServiceCard: 1=gray, 2=orange, 3=dark
+const bgClass = colorVariant === 2 ? 'bg-orange' : colorVariant === 3 ? 'bg-dark text-gray' : 'bg-gray';
+const headClass = colorVariant === 1 ? 'orangehead' : 'whitehead';
+const borderColor = colorVariant === 1 ? 'orange' : colorVariant === 2 ? 'black' : 'black';
+const tagClass = colorVariant === 3 ? 'bg-white/10 text-gray' : 'bg-black/10 text-black';
+const metricBgClass = colorVariant === 3 ? 'bg-white/10' : 'bg-black/10';
+const arrowColor = colorVariant === 3 ? '#f3f3f3' : '#191a23';
+const firstResult = results?.[0];
+---
+
+<Card isUnderline={true} border={borderColor}>
+  <div class={`flex flex-col justify-between gap-6 p-8 sm:p-[50px] min-h-[340px] ${bgClass}`}>
+
+    <!-- Top: client badge + tags -->
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-wrap gap-2">
+        {services.map((tag: string) => (
+          <span class={`text-xs px-3 py-1 font-medium uppercase tracking-wide ${tagClass}`}>{tag}</span>
+        ))}
+      </div>
+      <p class="text-sm font-medium opacity-60">{client}</p>
+    </div>
+
+    <!-- Middle: result headline -->
+    <div>
+      <h3 class="flex flex-col gap-1">
+        {resultHeadline.split(' ').reduce((acc: string[][], word: string, i: number) => {
+          const line = Math.floor(i / 4);
+          if (!acc[line]) acc[line] = [];
+          acc[line].push(word);
+          return acc;
+        }, []).map((line: string[]) => (
+          <span class={`w-fit ${headClass} text-xl`}>{line.join(' ')}</span>
+        ))}
+      </h3>
+    </div>
+
+    <!-- Bottom: key metric + link -->
+    <div class="flex items-end justify-between gap-4">
+      {firstResult && (
+        <div class={`flex flex-col px-4 py-3 ${metricBgClass}`}>
+          <span class="text-3xl font-medium">{firstResult.value}</span>
+          <span class="text-xs opacity-60 uppercase tracking-wide">{firstResult.label}</span>
+        </div>
+      )}
+      <a href={`/case-studies/${slug}`} class="flex items-center gap-3 ml-auto z-10 group shrink-0">
+        <span class="text-sm font-medium">Read Case Study</span>
+        <svg width="32" height="32" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-200 group-hover:translate-x-1">
+          <circle cx="20.5" cy="20.5" r="20.5" fill={colorVariant === 3 ? '#f3f3f3' : '#191a23'}/>
+          <path d="M11.25 24.701C10.5326 25.1152 10.2867 26.0326 10.701 26.75C11.1152 27.4674 12.0326 27.7133 12.75 27.299L11.25 24.701ZM30.7694 16.3882C30.9838 15.588 30.5089 14.7655 29.7087 14.5511L16.6687 11.0571C15.8685 10.8426 15.046 11.3175 14.8316 12.1177C14.6172 12.9179 15.0921 13.7404 15.8923 13.9548L27.4834 17.0607L24.3776 28.6518C24.1631 29.452 24.638 30.2745 25.4382 30.4889C26.2384 30.7033 27.0609 30.2284 27.2753 29.4282L30.7694 16.3882ZM12.75 27.299L30.0705 17.299L28.5705 14.701L11.25 24.701L12.75 27.299Z" fill={colorVariant === 3 ? '#191a23' : '#FFBD44'}/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</Card>

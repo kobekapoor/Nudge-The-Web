@@ -1,0 +1,114 @@
+---
+/**
+ * CaseBlock — renders a single flexible content block on a case study page.
+ *
+ * Supported block types:
+ *   text    — { title, body }
+ *   stats   — { title, stats: [{ label, value }] }
+ *   quote   — { quote, author, role }
+ *   image   — { src, alt, caption? }
+ *   list    — { title, items: string[] }
+ *   twoCol  — { title, body, imageSrc?, imageAlt?, imageLeft?: boolean }
+ */
+const { block } = Astro.props;
+---
+
+{block.type === 'text' && (
+  <div class="py-12 intersect-once intersect:motion-preset-slide-right">
+    <h2 class="text-2xl sm:text-3xl font-medium mb-5">
+      <span class="orangehead">{block.title}</span>
+    </h2>
+    <p class="text-lg leading-relaxed max-w-3xl">{block.body}</p>
+  </div>
+)}
+
+{block.type === 'stats' && (
+  <div class="py-12 bg-dark text-gray px-8 sm:px-[50px] intersect-once intersect:motion-preset-slide-right">
+    {block.title && (
+      <h2 class="text-2xl sm:text-3xl font-medium mb-8">
+        <span class="whitehead">{block.title}</span>
+      </h2>
+    )}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      {block.stats.map((stat: { value: string; label: string }, i: number) => (
+        <div
+          class={`flex flex-col gap-2 intersect-once intersect:motion-preset-scale-in motion-delay-[${i * 0.15}s]`}
+        >
+          <span class="text-4xl sm:text-5xl font-medium text-orange">{stat.value}</span>
+          <span class="text-sm uppercase tracking-wide opacity-60">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+{block.type === 'quote' && (
+  <div class="py-12 intersect-once intersect:motion-preset-slide-right">
+    <blockquote class="border-l-4 border-orange pl-8 py-4">
+      <p class="text-xl sm:text-2xl italic leading-relaxed mb-6">"{block.quote}"</p>
+      <footer>
+        <span class="font-medium text-lg">{block.author}</span>
+        {block.role && <span class="text-base opacity-60 ml-2">— {block.role}</span>}
+      </footer>
+    </blockquote>
+  </div>
+)}
+
+{block.type === 'image' && (
+  <div class="py-12 intersect-once intersect:motion-preset-slide-right">
+    <figure>
+      <img
+        src={block.src}
+        alt={block.alt}
+        class="w-full object-cover"
+      />
+      {block.caption && (
+        <figcaption class="mt-3 text-sm text-center opacity-50">{block.caption}</figcaption>
+      )}
+    </figure>
+  </div>
+)}
+
+{block.type === 'list' && (
+  <div class="py-12 intersect-once intersect:motion-preset-slide-right">
+    {block.title && (
+      <h2 class="text-2xl sm:text-3xl font-medium mb-6">
+        <span class="orangehead">{block.title}</span>
+      </h2>
+    )}
+    <ul class="flex flex-col gap-3 max-w-3xl">
+      {block.items.map((item: string) => (
+        <li class="flex items-start gap-4">
+          <span class="mt-2 w-2 h-2 rounded-full bg-orange shrink-0"></span>
+          <span class="text-lg leading-relaxed">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+{block.type === 'twoCol' && (
+  <div class="py-12 intersect-once intersect:motion-preset-slide-right">
+    <div class={`grid lg:grid-cols-2 gap-10 items-center ${block.imageLeft ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+      <div>
+        {block.title && (
+          <h2 class="text-2xl sm:text-3xl font-medium mb-5">
+            <span class="orangehead">{block.title}</span>
+          </h2>
+        )}
+        <p class="text-lg leading-relaxed">{block.body}</p>
+      </div>
+      {block.imageSrc ? (
+        <img
+          src={block.imageSrc}
+          alt={block.imageAlt ?? ''}
+          class="w-full object-cover"
+        />
+      ) : (
+        <div class="bg-gray w-full aspect-video flex items-center justify-center">
+          <span class="opacity-30 text-sm">Image coming soon</span>
+        </div>
+      )}
+    </div>
+  </div>
+)}

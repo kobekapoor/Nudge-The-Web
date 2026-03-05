@@ -1,0 +1,79 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Contact from "../../components/sections/Contact.astro";
+import Section from "../../components/sections/Section.astro";
+import CaseBlock from "../../components/ui/CaseBlock.astro";
+import caseStudies from "../../data/caseStudies.json";
+
+export function getStaticPaths() {
+  return caseStudies.map((cs) => ({
+    params: { slug: cs.slug },
+    props: { caseStudy: cs },
+  }));
+}
+
+const { caseStudy } = Astro.props;
+const delays = ['motion-delay-[.1s]', 'motion-delay-[.2s]', 'motion-delay-[.3s]'];
+---
+
+<MainLayout
+  title={`${caseStudy.client} | Case Study`}
+  description={caseStudy.resultHeadline}
+>
+  <!-- Hero -->
+  <Section id="case-hero">
+    <div class="pt-12 pb-16">
+
+      <!-- Back link -->
+      <a
+        href="/case-studies"
+        class="inline-flex items-center gap-2 text-sm opacity-50 hover:opacity-100 transition-opacity duration-200 mb-10"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        All Case Studies
+      </a>
+
+      <!-- Client + tags -->
+      <div class="flex flex-wrap items-center gap-3 mb-6 intersect-once intersect:motion-preset-slide-right">
+        <span class="bg-orange text-black text-sm font-medium px-4 py-1">{caseStudy.client}</span>
+        <span class="text-sm opacity-50">{caseStudy.industry}</span>
+        {caseStudy.services.map((svc: string) => (
+          <span class="border border-black text-xs px-3 py-1 uppercase tracking-wide">{svc}</span>
+        ))}
+      </div>
+
+      <!-- Title -->
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight max-w-4xl mb-12 intersect-once intersect:motion-preset-slide-right motion-delay-[.1s]"
+      >
+        {caseStudy.title}
+      </h1>
+
+      <!-- Key results strip -->
+      <div class="bg-dark text-gray grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+        {caseStudy.results.map((result: { value: string; label: string }, i: number) => (
+          <div
+            class={`flex flex-col gap-2 px-8 py-8 intersect-once intersect:motion-preset-scale-in ${delays[i]}`}
+          >
+            <span class="text-4xl sm:text-5xl font-medium text-orange">{result.value}</span>
+            <span class="text-sm uppercase tracking-wide opacity-50">{result.label}</span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </Section>
+
+  <!-- Dynamic content blocks -->
+  <Section id="case-content">
+    <div class="divide-y divide-black/10">
+      {caseStudy.blocks.map((block: any) => (
+        <CaseBlock block={block} />
+      ))}
+    </div>
+  </Section>
+
+  <Contact />
+</MainLayout>

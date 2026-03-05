@@ -1,0 +1,176 @@
+[
+  {
+    "slug": "craftwood-flooring",
+    "client": "Craftwood Flooring Co.",
+    "title": "How We Helped Craftwood Scale Their Online Presence",
+    "industry": "Home Services",
+    "services": ["Website Development", "SEO"],
+    "resultHeadline": "150% increase in organic traffic in 90 days",
+    "colorVariant": 1,
+    "results": [
+      { "label": "Traffic Increase", "value": "150%" },
+      { "label": "Lead Generation", "value": "3×" },
+      { "label": "Time to Launch", "value": "3 weeks" }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "title": "The Challenge",
+        "body": "Craftwood Flooring Co. had a strong local reputation but almost no online presence. Their existing website was outdated, slow, and wasn't appearing in any local search results. Leads were coming almost entirely from word of mouth — reliable, but not scalable. They needed a digital foundation that could match the quality of their craftsmanship."
+      },
+      {
+        "type": "stats",
+        "title": "Results at a Glance",
+        "stats": [
+          { "label": "Traffic Increase", "value": "150%" },
+          { "label": "Lead Generation", "value": "3×" },
+          { "label": "Time to Launch", "value": "3 weeks" },
+          { "label": "Bounce Rate Drop", "value": "40%" }
+        ]
+      },
+      {
+        "type": "text",
+        "title": "Our Approach",
+        "body": "We started with a full audit of their existing site and competitive landscape. From there, we designed a clean, conversion-focused website built on a modern CMS with local SEO baked in from day one. Every page was structured to drive visitors toward a consultation booking — with fast load times, clear calls to action, and social proof front and centre."
+      },
+      {
+        "type": "list",
+        "title": "What We Did",
+        "items": [
+          "Full website redesign with conversion-focused layout",
+          "Local SEO optimisation — Google Business Profile, schema markup, and on-page foundations",
+          "CMS setup so the Craftwood team can update content without a developer",
+          "Speed and performance optimisation (99/100 Lighthouse score)",
+          "Attribution tracking to measure lead sources accurately"
+        ]
+      },
+      {
+        "type": "quote",
+        "quote": "Nudge The Web built us a website that not only looks amazing but actually works to convert. He understood our vision right away and translated it into a fast, modern site that's easy to update and designed to grow with our business.",
+        "author": "Hayden McRae",
+        "role": "Owner, Craftwood Flooring Co."
+      },
+      {
+        "type": "text",
+        "title": "The Outcome",
+        "body": "Within 90 days of launch, organic traffic had grown by 150% and inbound leads had tripled. Craftwood now has a consistent pipeline of enquiries coming through their website — and a platform they can confidently grow on as their business expands."
+      }
+    ]
+  },
+  {
+    "slug": "apex-revenue-ops",
+    "client": "Apex Growth Partners",
+    "title": "Streamlining Revenue Operations for a Fast-Scaling B2B Firm",
+    "industry": "B2B / Professional Services",
+    "services": ["Revenue Operations", "HubSpot Development", "Business Automation"],
+    "resultHeadline": "60% reduction in manual reporting time",
+    "colorVariant": 2,
+    "results": [
+      { "label": "Reporting Time Saved", "value": "60%" },
+      { "label": "Pipeline Visibility", "value": "Full" },
+      { "label": "CRM Data Accuracy", "value": "95%+" }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "title": "The Challenge",
+        "body": "Apex Growth Partners were scaling fast but their internal operations weren't keeping up. Sales and marketing data lived in disconnected tools, pipeline reporting was manual and error-prone, and their HubSpot CRM was underutilised — acting as little more than a contact database rather than a revenue engine."
+      },
+      {
+        "type": "twoCol",
+        "title": "Disconnected Systems, Real Costs",
+        "body": "Their team was spending over 10 hours per week manually compiling reports that should have been automatic. Deals were slipping through cracks because there was no clear view of the pipeline, and attribution was essentially guesswork. They needed a single source of truth across sales, marketing, and customer success.",
+        "imageSrc": null,
+        "imageAlt": "Revenue operations dashboard",
+        "imageLeft": false
+      },
+      {
+        "type": "stats",
+        "title": "The Impact",
+        "stats": [
+          { "label": "Manual Reporting Hours Saved / Week", "value": "10+" },
+          { "label": "Reporting Time Reduced", "value": "60%" },
+          { "label": "CRM Data Accuracy", "value": "95%+" },
+          { "label": "Pipeline Stages Automated", "value": "8" }
+        ]
+      },
+      {
+        "type": "list",
+        "title": "What We Delivered",
+        "items": [
+          "Full HubSpot CRM audit and restructure — clean, consistent data across all contacts and deals",
+          "Automated pipeline stage progression based on deal activity and engagement signals",
+          "Custom reporting dashboards for sales leadership — live, not manual",
+          "Marketing attribution setup connecting ad spend to closed revenue",
+          "Zapier and native HubSpot automation workflows to eliminate repetitive manual tasks",
+          "Team onboarding and documentation so the system is maintainable long-term"
+        ]
+      },
+      {
+        "type": "quote",
+        "quote": "We finally have a CRM that actually works for us. The reporting alone has saved us hours every week, and we now have full confidence in our pipeline numbers going into every board meeting.",
+        "author": "Sarah Okafor",
+        "role": "Head of Revenue, Apex Growth Partners"
+      }
+    ]
+  },
+  {
+    "slug": "northsea-analytics",
+    "client": "Northsea Digital",
+    "title": "Building a Data-Driven Marketing Engine from the Ground Up",
+    "industry": "E-commerce / Retail",
+    "services": ["Analytics Tracking", "Paid Advertising", "Business Automation"],
+    "resultHeadline": "2.8× ROAS improvement across paid channels",
+    "colorVariant": 3,
+    "results": [
+      { "label": "ROAS Improvement", "value": "2.8×" },
+      { "label": "Attribution Accuracy", "value": "95%" },
+      { "label": "Ad Spend Wasted", "value": "−35%" }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "title": "The Challenge",
+        "body": "Northsea Digital were spending a significant budget across Google and Meta ads but had no reliable way to measure what was actually working. Tracking was broken — events were firing incorrectly, conversion data was inconsistent, and their agency had no accurate signal to optimise against. They were flying blind."
+      },
+      {
+        "type": "stats",
+        "title": "By the Numbers",
+        "stats": [
+          { "label": "ROAS Improvement", "value": "2.8×" },
+          { "label": "Tracking Accuracy", "value": "95%" },
+          { "label": "Wasted Ad Spend Eliminated", "value": "35%" },
+          { "label": "Time to Clean Data", "value": "2 weeks" }
+        ]
+      },
+      {
+        "type": "text",
+        "title": "Our Approach",
+        "body": "We began with a full tracking audit — identifying every broken event, duplicate trigger, and misconfigured conversion. From there we rebuilt their GA4 and Meta Pixel setup from scratch using server-side tagging via Google Tag Manager. Once the data foundation was solid, we restructured their paid campaigns using the clean conversion signals."
+      },
+      {
+        "type": "list",
+        "title": "What We Built",
+        "items": [
+          "Full GA4 implementation — events, conversions, audiences, and custom dimensions",
+          "Server-side GTM setup to improve data accuracy and reduce browser-side data loss",
+          "Meta Conversions API integration for first-party signal matching",
+          "Google Ads conversion tracking rebuilt from scratch with verified attribution",
+          "Custom Looker Studio dashboard for live campaign performance reporting",
+          "Automated anomaly alerts for tracking breaks or spend spikes"
+        ]
+      },
+      {
+        "type": "quote",
+        "quote": "We had no idea how broken our tracking was until Nudge The Web audited it. Within two weeks we had clean data, and within a month our campaign performance had transformed. We're now making decisions based on real numbers.",
+        "author": "Tom Reilly",
+        "role": "Marketing Director, Northsea Digital"
+      },
+      {
+        "type": "text",
+        "title": "The Outcome",
+        "body": "With accurate tracking in place for the first time, Northsea's media team could finally optimise with confidence. ROAS improved by 2.8× within 60 days — not because we changed the creative, but because the algorithm now had accurate signals to learn from. Eliminating wasted spend on mis-attributed conversions freed up budget that was reinvested into high-performing campaigns."
+      }
+    ]
+  }
+]
