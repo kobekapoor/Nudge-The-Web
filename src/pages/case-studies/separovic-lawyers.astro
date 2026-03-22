@@ -1,0 +1,399 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Contact from "../../components/sections/Contact.astro";
+import GridOverlay from "../../components/ui/GridOverlay.astro";
+---
+
+<MainLayout
+	title="Case Study: Separovic Injury Lawyers | Nudge The Web"
+	description="How Nudge The Web saved Separovic Injury Lawyers over $18,000/year by migrating from HubSpot to a leaner Zapier-based automation stack."
+>
+	<!-- 1. Hero -->
+	<section class="relative bg-dark overflow-hidden">
+		<GridOverlay />
+		<div class="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
+			<span
+				class="inline-flex bg-orange/10 px-3 py-1 text-sm font-semibold text-orange ring-1 ring-inset ring-orange/30"
+			>
+				Case Study
+			</span>
+			<h1 class="mt-6 text-pretty text-4xl font-semibold tracking-tight text-white sm:text-6xl max-w-4xl">
+				How We Saved Separovic Injury Lawyers
+				<span class="text-orange"> Over $18,000/Year</span>
+			</h1>
+			<p class="mt-6 text-lg text-gray-400 max-w-2xl">
+				A Perth personal injury law firm was paying ~$20,000 AUD/year for HubSpot — a platform they barely
+				needed. We replaced it with a purpose-built automation stack at a fraction of the cost.
+			</p>
+			<div class="mt-10 flex flex-wrap gap-4 items-center">
+				<a href="#contact" class="btn-tertiary text-white px-8 py-4 hover:text-dark"> Work with us </a>
+				<div class="text-gray-500 text-sm">
+					<span class="text-white font-semibold">Separovic Injury Lawyers</span> · Perth, WA · 30+ years in practice
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 2. Key Stats Strip -->
+	<section class="bg-gray py-14">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[0ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">
+						$18,400<span class="text-orange">+</span>
+					</div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">Annual savings</div>
+					<div class="mt-1 text-gray-400 text-xs">Up to $19,400 AUD/year</div>
+				</div>
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[100ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">
+						30<span class="text-orange"> hrs</span>
+					</div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">Project delivery</div>
+					<div class="mt-1 text-gray-400 text-xs">Full migration scoped & executed</div>
+				</div>
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[200ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">
+						~92<span class="text-orange">%</span>
+					</div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">Cost reduction</div>
+					<div class="mt-1 text-gray-400 text-xs">$20k/yr → ~$600–$3,600/yr</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 3. The Problem -->
+	<section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+				<!-- Left: text -->
+				<div class="intersect-once intersect:motion-preset-slide-right">
+					<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Problem</p>
+					<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+						Paying a premium for software they didn't need
+					</h2>
+					<div class="mt-6 space-y-4 text-gray-600 text-base leading-relaxed">
+						<p>
+							Separovic Lawyers was paying approximately <strong class="text-dark"
+								>$20,000 AUD per year</strong
+							> for HubSpot Marketing Pro — a powerful but expensive platform being used almost exclusively for
+							lead nurture automation.
+						</p>
+						<p>
+							The firm already ran their practice on <strong class="text-dark">ActionStep</strong>, a
+							dedicated legal practice management system. HubSpot was running alongside it just to fill the
+							gaps ActionStep couldn't handle natively.
+						</p>
+						<p>
+							The result: <strong class="text-dark">double-handling of client data</strong>, two systems to
+							maintain, and a premium price tag for features they largely didn't need. With their HubSpot
+							renewal approaching, they reached out to explore a smarter path forward.
+						</p>
+					</div>
+				</div>
+				<!-- Right: callout box -->
+				<div class="intersect-once intersect:motion-preset-slide-right motion-delay-[150ms]">
+					<div class="border-l-4 border-orange bg-orange/5 p-8">
+						<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-4">The situation</p>
+						<ul class="space-y-5 text-gray-700 text-sm">
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span><strong class="text-dark">~$1,667/month</strong> spent on HubSpot Marketing Pro</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									>HubSpot used <strong class="text-dark">only for automation</strong> — not CRM or sales pipeline</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									>ActionStep already in place as their <strong class="text-dark"
+										>legal practice management system</strong
+									></span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									><strong class="text-dark">Duplicate data entry</strong> between HubSpot and ActionStep</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span>Renewal deadline creating <strong class="text-dark">urgency to act</strong></span>
+							</li>
+						</ul>
+					</div>
+					<div class="mt-6 bg-red-100 border-red-500 border-2 p-6 text-center">
+						<div class="text-red-500 text-3xl font-semibold">$20,000 AUD/yr</div>
+						<div class="text-gray-700 text-sm mt-1">
+							Spent on a platform they were massively over-paying for
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 4. The Solution -->
+	<section class="bg-gray py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Solution</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+					A leaner stack built for the firm's actual needs
+				</h2>
+				<p class="mt-4 text-gray-600 text-base leading-relaxed">
+					Rather than recommending a like-for-like HubSpot replacement, Nudge The Web proposed a purpose-built
+					stack that covered everything the firm needed — at a fraction of the cost.
+				</p>
+			</div>
+
+			<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				{
+					[
+						{
+							tool: "ActionStep",
+							role: "Single source of truth",
+							desc: "All lead and matter management centralised in one system — no more double-handling.",
+							badge: "Core platform",
+						},
+						{
+							tool: "Zapier",
+							role: "Automation engine",
+							desc: "Powers all multi-step workflows combining email and SMS touchpoints triggered by ActionStep events.",
+							badge: "Replaces HubSpot",
+						},
+						{
+							tool: "MailerSend",
+							role: "Transactional email",
+							desc: "DNS-authenticated email delivery connected to Zapier. Professional, reliable, and cost-effective.",
+							badge: "Email infrastructure",
+						},
+						{
+							tool: "Sakari",
+							role: "SMS automation",
+							desc: "Outbound SMS from the firm's own number — not a generic sender. Triggered automatically via Zapier.",
+							badge: "SMS infrastructure",
+						},
+						{
+							tool: "ActionStep Capture",
+							role: "Web forms",
+							desc: "Replaced the HubSpot intake form on the firm's website. New enquiries sync directly into ActionStep.",
+							badge: "Replaces HubSpot forms",
+						},
+					].map((item, i) => (
+						<div
+							class={`bg-white border border-gray-200 p-6 intersect-once intersect:motion-preset-slide-right motion-delay-[${i * 75}ms]`}
+						>
+							<div class="text-xs font-semibold text-orange uppercase tracking-widest mb-3">{item.badge}</div>
+							<div class="text-xl font-semibold text-dark">{item.tool}</div>
+							<div class="text-sm font-medium text-gray-500 mt-0.5">{item.role}</div>
+							<p class="mt-3 text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+						</div>
+					))
+				}
+
+				<!-- Estimated cost card -->
+				<div
+					class="bg-dark border border-dark p-6 flex flex-col justify-between intersect-once intersect:motion-preset-slide-right motion-delay-[375ms]"
+				>
+					<div>
+						<div class="text-xs font-semibold text-orange uppercase tracking-widest mb-3">New stack cost</div>
+						<div class="text-3xl font-semibold text-white">$50–$300<span class="text-orange">/mo</span></div>
+						<p class="mt-3 text-gray-400 text-sm leading-relaxed">
+							Estimated combined software cost — compared to ~$1,667/month for HubSpot Marketing Pro.
+						</p>
+					</div>
+					<div class="mt-6 pt-4 border-t border-white/10 text-gray-500 text-xs">
+						Estimated $600–$3,600 AUD per year
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 5. The Work -->
+	<section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Work</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+					Full migration in ~30 hours
+				</h2>
+				<p class="mt-4 text-gray-600 text-base leading-relaxed">
+					Nudge The Web scoped and executed the complete migration — from rebuilding automation sequences to
+					configuring email infrastructure and training the team.
+				</p>
+			</div>
+
+			<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+				{
+					[
+						{
+							num: "01",
+							title: "Automation Rebuild in Zapier",
+							body: "The firm's existing lead nurture sequences were rebuilt in Zapier — multi-step workflows combining automated SMS and email touchpoints triggered by key stages in the client intake process. Same logic, fraction of the cost.",
+						},
+						{
+							num: "02",
+							title: "Email & SMS Infrastructure",
+							body: "MailerSend was configured as the transactional email provider with DNS authentication handled in coordination with the firm's IT team. SMS automation was set up through Sakari, ensuring messages came from the firm's own number.",
+						},
+						{
+							num: "03",
+							title: "Web Forms via ActionStep Capture",
+							body: "The HubSpot intake form on the firm's website was replaced with an ActionStep Capture form — automatically creating new lead records in ActionStep on submission, eliminating manual data entry between systems.",
+						},
+						{
+							num: "04",
+							title: "Team Handover & Documentation",
+							body: "Nudge The Web documented the full workflow and walked the team through how to manage and trigger automations correctly in the new system — ensuring they could operate independently going forward.",
+						},
+					].map((item, i) => (
+						<div
+							class={`border border-gray-200 p-8 group hover:border-orange transition-colors duration-200 intersect-once intersect:motion-preset-slide-right motion-delay-[${i * 100}ms]`}
+						>
+							<div class="text-5xl font-semibold text-gray-100 group-hover:text-orange/20 transition-colors duration-200 select-none">
+								{item.num}
+							</div>
+							<h3 class="mt-2 text-lg font-semibold text-dark">{item.title}</h3>
+							<p class="mt-3 text-gray-600 text-sm leading-relaxed">{item.body}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- 6. Before vs After Table -->
+	<section class="bg-dark py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Results</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-white leading-tight">Before & after</h2>
+				<p class="mt-4 text-gray-400 text-base">
+					All automations running in Zapier. HubSpot cancelled before renewal. Savings immediate.
+				</p>
+			</div>
+
+			<div
+				class="mt-12 overflow-x-auto intersect-once intersect:motion-preset-slide-right motion-delay-[100ms]"
+			>
+				<table class="w-full min-w-[640px] border-collapse text-sm">
+					<thead>
+						<tr>
+							<th class="text-left py-4 px-6 text-gray-500 font-medium border-b border-white/10 w-1/3"></th>
+							<th
+								class="text-left py-4 px-6 text-gray-400 font-semibold border-b border-white/10 uppercase tracking-wider text-xs"
+								>Before</th
+							>
+							<th
+								class="text-left py-4 px-6 text-orange font-semibold border-b border-orange/30 uppercase tracking-wider text-xs"
+								>After</th
+							>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							[
+								{
+									label: "Platform",
+									before: "HubSpot Marketing Pro",
+									after: "Zapier + MailerSend + Sakari",
+								},
+								{
+									label: "Estimated Annual Cost",
+									before: "~$20,000 AUD",
+									after: "~$600–$1,600 AUD",
+								},
+								{
+									label: "Annual Saving",
+									before: "—",
+									after: "$18,400–$19,400 AUD",
+								},
+								{
+									label: "Data Handling",
+									before: "Two systems (HubSpot + ActionStep)",
+									after: "Single system (ActionStep)",
+								},
+								{
+									label: "Form-to-Lead",
+									before: "Manual / HubSpot form",
+									after: "Automated via ActionStep Capture",
+								},
+							].map((row, i) => (
+								<tr class={i % 2 === 0 ? "bg-white/[0.02]" : ""}>
+									<td class="py-4 px-6 text-gray-400 font-medium border-b border-white/5">{row.label}</td>
+									<td class="py-4 px-6 text-gray-500 border-b border-white/5">{row.before}</td>
+									<td class="py-4 px-6 text-orange font-semibold border-b border-white/5">{row.after}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<p
+				class="mt-8 text-gray-500 text-sm intersect-once intersect:motion-preset-slide-right motion-delay-[200ms]"
+			>
+				Following the initial project, the firm engaged Nudge The Web again to migrate existing lead data from
+				HubSpot into ActionStep, train the team on managing their Zapier workflows independently, and
+				streamline their client intake form process.
+			</p>
+		</div>
+	</section>
+
+	<!-- 7. Testimonial -->
+	<!-- <section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-3xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-8">In Their Words</p>
+				<blockquote class="border-l-4 border-orange pl-8">
+					<p class="text-xl sm:text-2xl font-semibold text-dark leading-snug">
+						"occaecat excepteur elit irure ex sunt velit aliqua eiusmod velit laboris nulla ea laborum aliquip
+						irure non reprehenderit minim exercitation dolore esse quis nostrud veniam nostrud tempor veniam
+						id veniam consectetur eu sunt consectetur do consequat labore dolore excepteur nulla commodo est"
+					</p>
+					<figcaption class="mt-6 flex items-center gap-4">
+						<div class="h-px w-8 bg-orange"></div>
+						<div>
+							<div class="font-semibold text-dark text-sm">Tony Seperovic</div>
+							<div class="text-gray-500 text-sm">Seperovic Lawyers</div>
+						</div>
+					</figcaption>
+				</blockquote>
+			</div>
+		</div>
+	</section> -->
+
+	<!-- 8. CTA Banner -->
+	<section class="bg-orange py-16 mb-20">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-8">
+			<div>
+				<h2 class="text-2xl sm:text-3xl font-semibold text-dark">Paying for software you don't fully use?</h2>
+				<p class="mt-2 text-dark/70 text-base">
+					Nudge The Web helps businesses cut costs and eliminate manual work through smart automation.
+				</p>
+			</div>
+			<a
+				href="#contact"
+				class="btn-primary whitespace-nowrap text-white hover:text-dark px-8 py-4 flex-shrink-0"
+			>
+				Let's fix that
+			</a>
+		</div>
+	</section>
+
+	<!-- 9. Contact -->
+	<Contact />
+</MainLayout>

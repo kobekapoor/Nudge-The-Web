@@ -1,0 +1,444 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Contact from "../../components/sections/Contact.astro";
+import GridOverlay from "../../components/ui/GridOverlay.astro";
+import { Image } from "astro:assets";
+import mockupImg from "../../assets/pics/Website Hero Image-min.jpg";
+---
+
+<MainLayout
+	title="Case Study: Basketball Magic Australia | Nudge The Web"
+	description="How Nudge The Web built a HubSpot-powered website for Australia's premier basketball tour operator, delivering lead generation, CRM integration, and automated workflows."
+>
+	<!-- 1. Hero -->
+	<section class="relative bg-dark overflow-hidden">
+		<GridOverlay />
+		<div class="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
+			<span
+				class="inline-flex bg-orange/10 px-3 py-1 text-sm font-semibold text-orange ring-1 ring-inset ring-orange/30"
+			>
+				Case Study
+			</span>
+			<h1 class="mt-6 text-pretty text-4xl font-semibold tracking-tight text-white sm:text-6xl max-w-4xl">
+				Building a HubSpot-Powered Website for
+				<span class="text-orange"> Australia's Premier Basketball Tour Operator</span>
+			</h1>
+			<p class="mt-6 text-lg text-gray-400 max-w-2xl">
+				Basketball Magic Australia needed a professional digital presence that could handle leads,
+				registrations, and multiple audiences. We delivered a fully integrated HubSpot build — end to end.
+			</p>
+			<div class="mt-10 flex flex-wrap gap-4 items-center">
+				<a href="#contact" class="btn-tertiary text-white px-8 py-4 hover:text-dark"> Work with us </a>
+				<div class="text-gray-500 text-sm">
+					<span class="text-white font-semibold">Basketball Magic Australia</span> · NBA Basketball School Australia
+					licensee
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 2. Key Stats Strip -->
+	<section class="bg-gray py-14">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[0ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">
+						8–9<span class="text-orange"> wks</span>
+					</div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">Project delivery</div>
+					<div class="mt-1 text-gray-400 text-xs">Workshops through to launch</div>
+				</div>
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[100ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">3<span class="text-orange">+</span></div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">Audiences served</div>
+					<div class="mt-1 text-gray-400 text-xs">Schools, clubs & individual players</div>
+				</div>
+				<div
+					class="bg-white border border-gray-200 p-8 text-center intersect-once intersect:motion-preset-slide-right motion-delay-[200ms]"
+				>
+					<div class="text-4xl sm:text-5xl font-semibold text-dark">
+						1<span class="text-orange"> platform</span>
+					</div>
+					<div class="mt-2 text-gray-500 text-sm font-medium uppercase tracking-wider">
+						Website + CRM + automation
+					</div>
+					<div class="mt-1 text-gray-400 text-xs">All in HubSpot Content Hub</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 3. The Project -->
+	<section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+				<!-- Left: text -->
+				<div class="intersect-once intersect:motion-preset-slide-right">
+					<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Project</p>
+					<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+						A digital presence worthy of an NBA licence
+					</h2>
+					<div class="mt-6 space-y-4 text-gray-600 text-base leading-relaxed">
+						<p>
+							Basketball Magic Australia is the country's premier basketball tour operator, operating under an
+							exclusive <strong class="text-dark">NBA Basketball School Australia licence</strong>. They
+							needed more than a brochure website — they needed a system that could generate leads, handle
+							registrations, and serve multiple audiences across schools, clubs, and individual players.
+						</p>
+						<p>
+							Nudge The Web partnered with creative agency <a
+								href="https://www.nowwecollide.com.au"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="font-bold text-dark underline decoration-orange underline-offset-2 hover:text-orange transition-colors"
+								>Now We Collide</a
+							>, who led the brand strategy, design, and copywriting. Our role was to take their vision and
+							bring it to life inside <strong class="text-dark">HubSpot Content Hub</strong> — a fully functional,
+							conversion-focused build from the ground up.
+						</p>
+						<p>
+							The result was a website where lead capture, automated follow-up, contact management, and
+							content management all live in a single platform — purpose-built for a lean team managing
+							high-volume enquiries.
+						</p>
+					</div>
+				</div>
+				<!-- Right: callout box -->
+				<div class="intersect-once intersect:motion-preset-slide-right motion-delay-[150ms]">
+					<div class="border-l-4 border-orange bg-orange/5 p-8">
+						<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-4">What was needed</p>
+						<ul class="space-y-5 text-gray-700 text-sm">
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									>A <strong class="text-dark">professional website</strong> aligned to NBA licence branding</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									><strong class="text-dark">Lead generation</strong> across schools, clubs, and individual players</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									><strong class="text-dark">Digital registration forms</strong> feeding directly into a CRM pipeline</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									>A <strong class="text-dark">modular CMS</strong> the small team could manage independently</span
+								>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="mt-1 h-2 w-2 rounded-full bg-orange flex-shrink-0"></span>
+								<span
+									><strong class="text-dark">Automated workflows</strong> replacing manual lead and booking processes</span
+								>
+							</li>
+						</ul>
+					</div>
+					<div class="mt-6 bg-dark p-6 text-center">
+						<div class="text-orange text-xl font-semibold">HubSpot Content Hub</div>
+						<div class="text-gray-400 text-sm mt-1">
+							Website, CRM, and automation — one connected platform
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 3b. Website Mockup -->
+	<section class="pb-12 sm:pb-16">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<Image
+				src={mockupImg}
+				alt="Basketball Magic Australia website shown on desktop and mobile"
+				class="w-full object-cover intersect-once intersect:motion-preset-slide-right"
+				widths={[800, 1200, 1600]}
+				sizes="(max-width: 768px) 100vw, 1280px"
+			/>
+		</div>
+	</section>
+
+	<!-- 4. What We Built -->
+	<section class="bg-gray py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">What We Built</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+					End-to-end in HubSpot Content Hub
+				</h2>
+				<p class="mt-4 text-gray-600 text-base leading-relaxed">
+					The website was developed end-to-end on HubSpot's Content Hub, purpose-built for lead generation and
+					operational efficiency.
+				</p>
+			</div>
+
+			<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				{
+					[
+						{
+							tool: "HubSpot Content Hub",
+							role: "Website platform",
+							desc: "Multi-audience website with campaign landing pages, modular content blocks, and digital registration forms — all manageable by the team without a developer.",
+							badge: "Core platform",
+						},
+						{
+							tool: "HubSpot CRM",
+							role: "Lead & contact management",
+							desc: "All form submissions flow directly into the CRM pipeline. The team gets full visibility of leads from first touch to booking.",
+							badge: "Pipeline management",
+						},
+						{
+							tool: "HubSpot Workflows",
+							role: "Automation",
+							desc: "Automated lead nurture sequences replacing manual follow-up processes across the client intake and booking pipeline.",
+							badge: "Replaces manual work",
+						},
+						{
+							tool: "Modular Content Blocks",
+							role: "Self-serve publishing",
+							desc: "The site was built with flexible, reusable content structures so the Basketball Magic team could launch new campaigns and landing pages independently.",
+							badge: "Content management",
+						},
+						{
+							tool: "Registration Forms",
+							role: "Lead capture",
+							desc: "Dynamic digital forms for schools, clubs, and individual players — syncing directly into HubSpot CRM on submission with zero manual data entry.",
+							badge: "Multi-audience",
+						},
+					].map((item, i) => (
+						<div
+							class={`bg-white border border-gray-200 p-6 intersect-once intersect:motion-preset-slide-right motion-delay-[${i * 75}ms]`}
+						>
+							<div class="text-xs font-semibold text-orange uppercase tracking-widest mb-3">{item.badge}</div>
+							<div class="text-xl font-semibold text-dark">{item.tool}</div>
+							<div class="text-sm font-medium text-gray-500 mt-0.5">{item.role}</div>
+							<p class="mt-3 text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+						</div>
+					))
+				}
+
+				<!-- Agency partnership card -->
+				<div
+					class="bg-dark border border-dark p-6 flex flex-col justify-between intersect-once intersect:motion-preset-slide-right motion-delay-[375ms]"
+				>
+					<div>
+						<div class="text-xs font-semibold text-orange uppercase tracking-widest mb-3">
+							Agency partnership
+						</div>
+						<a
+							href="https://www.nowwecollide.com.au"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xl font-semibold text-white hover:text-orange transition-colors">Now We Collide ↗</a
+						>
+						<p class="mt-3 text-gray-400 text-sm leading-relaxed">
+							Brand strategy, visual identity, and copywriting handled by Now We Collide. Nudge The Web
+							executed the full technical build in HubSpot — a clean division of expertise.
+						</p>
+					</div>
+					<div class="mt-6 pt-4 border-t border-white/10 text-gray-500 text-xs">
+						Need a HubSpot dev for your agency's next project?
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 5. The Work -->
+	<section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Work</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-dark leading-tight">
+					Delivered in structured sprints over 8–9 weeks
+				</h2>
+				<p class="mt-4 text-gray-600 text-base leading-relaxed">
+					From initial workshops through to website launch and first campaign rollout — scoped, built, and
+					handed over in a single engagement.
+				</p>
+			</div>
+
+			<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+				{
+					[
+						{
+							num: "01",
+							title: "Discovery & Workshops",
+							body: "Initial workshops with Basketball Magic Australia and Now We Collide to align on requirements, audience segments, and the technical scope of the HubSpot build before a single line of code was written.",
+						},
+						{
+							num: "02",
+							title: "Website Build in HubSpot Content Hub",
+							body: "The full website was built inside HubSpot Content Hub using Now We Collide's designs — multi-audience pages, campaign landing pages, and modular content structures for self-serve publishing.",
+						},
+						{
+							num: "03",
+							title: "CRM & Automation Setup",
+							body: "HubSpot CRM was configured with a lead pipeline mapped to the client intake process. Automated workflows replaced manual follow-up, triggered by form submissions and stage changes in the CRM.",
+						},
+						{
+							num: "04",
+							title: "Launch & Campaign Rollout",
+							body: "The site launched on schedule, with the Basketball Magic team trained and equipped to run campaigns independently. The first campaign rollout happened within the same engagement window.",
+						},
+					].map((item, i) => (
+						<div
+							class={`border border-gray-200 p-8 group hover:border-orange transition-colors duration-200 intersect-once intersect:motion-preset-slide-right motion-delay-[${i * 100}ms]`}
+						>
+							<div class="text-5xl font-semibold text-gray-100 group-hover:text-orange/20 transition-colors duration-200 select-none">
+								{item.num}
+							</div>
+							<h3 class="mt-2 text-lg font-semibold text-dark">{item.title}</h3>
+							<p class="mt-3 text-gray-600 text-sm leading-relaxed">{item.body}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- 6. The Result -->
+	<section class="bg-dark py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-2xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-3">The Result</p>
+				<h2 class="text-3xl sm:text-4xl font-semibold text-white leading-tight">
+					Launched, operational, and running independently
+				</h2>
+				<p class="mt-4 text-gray-400 text-base leading-relaxed">
+					Basketball Magic Australia launched with a professional digital presence aligned to their NBA
+					licence branding — and the tools to run lead generation campaigns without depending on an external
+					developer.
+				</p>
+			</div>
+
+			<div
+				class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 intersect-once intersect:motion-preset-slide-right motion-delay-[100ms]"
+			>
+				<div class="border border-white/10 p-8">
+					<div class="text-orange text-sm font-semibold uppercase tracking-widest mb-3">Before</div>
+					<ul class="space-y-3 text-gray-400 text-sm">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>No professional
+							website
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>Manual lead
+							handling and follow-up
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>No CRM pipeline
+							or contact management
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-gray-600 flex-shrink-0"></span>Dependent on
+							developers for every update
+						</li>
+					</ul>
+				</div>
+				<div class="border border-orange/30 p-8 bg-white/[0.02]">
+					<div class="text-orange text-sm font-semibold uppercase tracking-widest mb-3">After</div>
+					<ul class="space-y-3 text-orange text-sm">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>NBA-branded website
+							live and converting
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>Automated lead
+							nurture from first touch
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>Full CRM pipeline
+							operational on day one
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>Team publishing
+							campaigns independently
+						</li>
+					</ul>
+				</div>
+				<div class="border border-white/10 p-8">
+					<div class="text-orange text-sm font-semibold uppercase tracking-widest mb-3">Tools Used</div>
+					<ul class="space-y-3 text-gray-400 text-sm">
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>HubSpot Content Hub
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>HubSpot CRM
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-orange flex-shrink-0"></span>HubSpot Workflows
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 7. Agency Note -->
+	<section class="bg-white py-20 sm:py-28">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="max-w-3xl intersect-once intersect:motion-preset-slide-right">
+				<p class="text-sm font-semibold text-orange uppercase tracking-widest mb-8">Working with agencies</p>
+				<blockquote class="border-l-4 border-orange pl-8">
+					<p class="text-xl sm:text-2xl font-semibold text-dark leading-snug">
+						"Kobe is great to work with, very collaborative and eay to work with. He has a thorough knowledge
+						of HubSpot from both a CRM and website UX and developer stance. His extensive experience and
+						willingness to provide input and advice make him an ideal partner for HubSpot projects big or
+						small."
+					</p>
+					<figcaption class="mt-6 flex items-center gap-4">
+						<div class="h-px w-8 bg-orange"></div>
+						<div>
+							<div class="font-semibold text-dark text-sm">Keir Maher</div>
+							<div class="text-gray-500 text-sm">Now We Collide</div>
+						</div>
+					</figcaption>
+				</blockquote>
+				<p class="mt-8 text-gray-600 text-base leading-relaxed">
+					<a
+						href="https://www.nowwecollide.com.au"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="font-semibold text-dark underline decoration-orange underline-offset-2 hover:text-orange transition-colors"
+						>Now We Collide</a
+					> handled brand strategy, visual identity, and copywriting. Nudge The Web owned the HubSpot build — no
+					overlap, no handoff friction. We took a finished design and a set of requirements and executed precisely
+					in the platform.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- 8. CTA Banner -->
+	<section class="bg-orange py-16 mb-20">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-8">
+			<div>
+				<h2 class="text-2xl sm:text-3xl font-semibold text-dark">Need a HubSpot build done right?</h2>
+				<p class="mt-2 text-dark/70 text-base">
+					Whether you're a direct client or an agency — Nudge The Web delivers precise, conversion-focused
+					HubSpot builds.
+				</p>
+			</div>
+			<a
+				href="#contact"
+				class="btn-primary whitespace-nowrap text-white hover:text-dark px-8 py-4 flex-shrink-0"
+			>
+				Let's talk
+			</a>
+		</div>
+	</section>
+
+	<!-- 9. Contact -->
+	<Contact />
+</MainLayout>
