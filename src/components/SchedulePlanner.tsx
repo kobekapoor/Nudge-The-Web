@@ -231,7 +231,7 @@ function DayCell({ d, year, month, onSave, onReset, onToggleHoliday }: any) {
         {status === "complete" && (
           <div style={{ textAlign: "center", lineHeight: 1.4 }}>
             <div style={{ fontSize: 12, color: colors.accent }}>✓</div>
-            <div style={{ fontSize: 7, color: colors.subText, letterSpacing: "0.03em" }}>done</div>
+            <div style={{ fontSize: 7, color: colors.subText, letterSpacing: "0.03em" }}>{schedHours}h</div>
           </div>
         )}
         {status === "bonus" && (
