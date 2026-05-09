@@ -18,7 +18,7 @@ if (Astro.request.method === "POST" && contentType.includes("urlencoded")) {
       maxAge: 60 * 60 * 24 * 30,
       path: "/",
     });
-    return Astro.redirect(Astro.url.pathname);
+    return Astro.redirect("/");
   }
   error = true;
 }
