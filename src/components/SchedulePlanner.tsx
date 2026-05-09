@@ -25,6 +25,15 @@ const DAY_SHORT = ["S","M","T","W","T","F","S"];
 
 function dayKey(year: number, month: number, day: number) { return `${year}-${month}-${day}`; }
 
+function getHolidayAllowance(viewYear: number, viewMonth: number): number {
+  // 1 day initially; +17 on each Sep 1 (month index 8) from 2026 onwards
+  let allowance = 1;
+  for (let year = 2026; year <= viewYear; year++) {
+    if (viewYear > year || (viewYear === year && viewMonth >= 8)) allowance += 17;
+  }
+  return allowance;
+}
+
 function getBaseHoursForDay(year: number, month: number, day: number) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const dow = new Date(year, month, day).getDay();
@@ -396,6 +405,14 @@ export default function SchedulePlanner() {
   const hasOverridesThisMonth = days.some(d => d.isOverridden);
   const overGoal = totalHours - effectiveTarget;
 
+  const holidayAllowance = getHolidayAllowance(year, month);
+  const holidaysUsed = Array.from(holidays).filter(key => {
+    const parts = key.split('-');
+    const y = parseInt(parts[0]), m = parseInt(parts[1]);
+    return y < year || (y === year && m <= month);
+  }).length;
+  const holidaysRemaining = holidayAllowance - holidaysUsed;
+
   const handleSave = (key: string, h: number) => { isDirtyRef.current = true; setOverrides(o => ({ ...o, [key]: h })); };
   const handleReset = (key: string) => { isDirtyRef.current = true; setOverrides(o => { const n = { ...o }; delete n[key]; return n; }); };
   const handleToggleHoliday = (key: string) => {
@@ -508,6 +525,12 @@ export default function SchedulePlanner() {
             <div style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.08em", textTransform: "uppercase" }}>Bonus days off</div>
             <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 34, fontWeight: 800, lineHeight: 1, color: bonusDays.length >= 4 ? "#2baa65" : bonusDays.length >= 2 ? "#5ecb8a" : bonusDays.length === 1 ? "#9adcb8" : "#ddd" }}>+{bonusDays.length}</div>
             {bonusDays.length > 0 && <div style={{ fontSize: 8.5, color: "#4ec486", letterSpacing: "0.03em" }}>{bonusDays.map(d => `${DAY_NAMES[d.dow].slice(0,3)} ${d.day}`).join(" · ")}</div>}
+          </div>
+          <div style={{ width: 1, background: "#e4e0d8", alignSelf: "stretch", minHeight: 40 }} />
+          <div style={{ textAlign: "right" }}>
+            <div style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.08em", textTransform: "uppercase" }}>Holidays left</div>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 34, fontWeight: 800, lineHeight: 1, color: holidaysRemaining < 0 ? "#c04040" : holidaysRemaining === 0 ? "#999" : "#e08030" }}>{holidaysRemaining}</div>
+            <div style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.03em" }}>{holidaysUsed} of {holidayAllowance} used</div>
           </div>
         </div>
       </div>
