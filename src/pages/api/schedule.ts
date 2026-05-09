@@ -2,7 +2,6 @@ import type { APIRoute } from "astro";
 import { kv } from "@vercel/kv";
 
 const KV_KEY = "schedule-planner-state";
-const PASSWORD = import.meta.env.SCHEDULE_PASSWORD;
 
 export const GET: APIRoute = async () => {
   try {
@@ -18,15 +17,6 @@ export const GET: APIRoute = async () => {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  if (PASSWORD) {
-    const auth = request.headers.get("x-schedule-password");
-    if (auth !== PASSWORD) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-  }
   try {
     const body = await request.json();
     await kv.set(KV_KEY, body);
