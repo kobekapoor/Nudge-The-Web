@@ -26,10 +26,12 @@ const DAY_SHORT = ["S","M","T","W","T","F","S"];
 function dayKey(year: number, month: number, day: number) { return `${year}-${month}-${day}`; }
 
 function getHolidayAllowance(viewYear: number, viewMonth: number): number {
-  // 1 day initially; +17 on each Sep 1 (month index 8) from 2026 onwards
+  // 1 day initially; each Sep 1 grants 17 + floor((year-2026)/2) days
+  // so 2026→17, 2027→17, 2028→18, 2029→18, 2030→19, ...
   let allowance = 1;
   for (let year = 2026; year <= viewYear; year++) {
-    if (viewYear > year || (viewYear === year && viewMonth >= 8)) allowance += 17;
+    if (viewYear > year || (viewYear === year && viewMonth >= 8))
+      allowance += 17 + Math.floor((year - 2026) / 2);
   }
   return allowance;
 }
