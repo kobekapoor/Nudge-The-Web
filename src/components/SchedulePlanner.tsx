@@ -309,7 +309,7 @@ function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes
 }) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
-  const { day, dow, schedHours, status, cum, isOverridden, isLastSeven, isHoliday, customType } = d;
+  const { day, dow, schedHours, normalHours, status, cum, isOverridden, isLastSeven, isHoliday, customType } = d;
   const colorMap: Record<string, { bg: string; border: string; num: string; accent: string; sub: string; subText: string }> = {
     complete: { bg: "#eaf7f0", border: "#4ec486", num: "#1a4a30", accent: "#2baa65", sub: "#2baa65", subText: "#6dd4a0" },
     bonus:    { bg: "#f2fbf5", border: "#bbe0cc", num: "#1a6040", accent: "#2baa65", sub: "#4ec486", subText: "#9ed8b8" },
