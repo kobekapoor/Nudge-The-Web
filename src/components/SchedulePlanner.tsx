@@ -8,7 +8,7 @@ interface DayInfo {
 }
 type Segment = { kind: "blank" } | { kind: "single"; cell: DayInfo } | { kind: "merged"; cells: DayInfo[]; typeId: string; span: number };
 
-const CUSTOM_TYPE_COLOR = "#7c5cbf";
+const CUSTOM_TYPE_COLOR = "#e07428";
 const BASE_SCHEDULE: Record<number, number> = { 1: 7, 3: 7, 4: 3, 5: 7, 6: 3 };
 const TARGET = 100;
 const REDUCED_HOURS = 2;
@@ -431,6 +431,11 @@ export default function SchedulePlanner() {
     setCustomTypes(prev => [...prev, { id, name, credit, color: CUSTOM_TYPE_COLOR }]);
     return id;
   };
+  const handleDeleteCustomType = (id: string) => {
+    isDirtyRef.current = true;
+    setCustomTypes(prev => prev.filter(t => t.id !== id));
+    setDayCustomTypes(prev => { const n = { ...prev }; Object.keys(n).forEach(k => { if (n[k] === id) delete n[k]; }); return n; });
+  };
   const handleSetDayCredit = (key: string, credit: number) => {
     isDirtyRef.current = true;
     setDayCustomCredits(prev => ({ ...prev, [key]: credit }));
@@ -602,6 +607,7 @@ export default function SchedulePlanner() {
           <div key={ct.id} style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <div style={{ width: 11, height: 11, background: ct.color + "18", border: `1.5px solid ${ct.color}`, borderRadius: 2, flexShrink: 0 }} />
             <span style={{ fontSize: 8.5, color: "#666" }}>{ct.name} (−{ct.credit}h goal)</span>
+            <button onClick={() => handleDeleteCustomType(ct.id)} title="Delete tag" style={{ fontSize: 10, color: "#ccc", background: "none", border: "none", cursor: "pointer", padding: "0 1px", lineHeight: 1, fontFamily: "inherit" }}>×</button>
           </div>
         ))}
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
