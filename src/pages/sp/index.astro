@@ -1,5 +1,26 @@
 ---
 import SchedulePlanner from "../../components/SchedulePlanner";
+
+const PASSWORD = import.meta.env.SCHEDULE_PASSWORD;
+const COOKIE_NAME = "sp-auth";
+
+const isAuthed = !PASSWORD || Astro.cookies.get(COOKIE_NAME)?.value === "ok";
+
+let error = false;
+if (Astro.request.method === "POST") {
+  const form = await Astro.request.formData();
+  if (form.get("password") === PASSWORD) {
+    Astro.cookies.set(COOKIE_NAME, "ok", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 30,
+      path: "/",
+    });
+    return Astro.redirect(Astro.url.pathname);
+  }
+  error = true;
+}
 ---
 
 <!DOCTYPE html>
@@ -14,6 +35,28 @@ import SchedulePlanner from "../../components/SchedulePlanner";
     </style>
   </head>
   <body>
-    <SchedulePlanner client:load />
+    {isAuthed ? (
+      <SchedulePlanner client:load />
+    ) : (
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;background:#f6f5f1;">
+        <div style="background:#fff;border-radius:14px;padding:32px 28px;width:300px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #eae8e0;">
+          <div style="font-size:18px;font-weight:800;color:#1a1a2e;margin-bottom:4px;letter-spacing:-0.02em;">Volunteer Hours</div>
+          <div style="font-size:9px;color:#bbb;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;">Enter password to continue</div>
+          <form method="POST">
+            <input
+              type="password"
+              name="password"
+              autofocus
+              placeholder="Password"
+              style="width:100%;padding:9px 12px;font-size:12px;font-family:inherit;border:1px solid #d8d4cc;border-radius:7px;outline:none;color:#1a1a2e;margin-bottom:10px;"
+            />
+            {error && <div style="font-size:9.5px;color:#c04040;margin-bottom:10px;">Incorrect password.</div>}
+            <button type="submit" style="width:100%;padding:9px 0;font-size:11px;font-family:inherit;background:#1a1a2e;color:#fff;border:none;border-radius:7px;cursor:pointer;font-weight:600;letter-spacing:0.04em;">
+              Continue
+            </button>
+          </form>
+        </div>
+      </div>
+    )}
   </body>
 </html>
