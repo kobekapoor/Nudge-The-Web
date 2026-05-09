@@ -7,7 +7,8 @@ const COOKIE_NAME = "sp-auth";
 const isAuthed = !PASSWORD || Astro.cookies.get(COOKIE_NAME)?.value === "ok";
 
 let error = false;
-if (Astro.request.method === "POST") {
+const contentType = Astro.request.headers.get("content-type") ?? "";
+if (Astro.request.method === "POST" && contentType.includes("urlencoded")) {
   const form = await Astro.request.formData();
   if (form.get("password") === PASSWORD) {
     Astro.cookies.set(COOKIE_NAME, "ok", {
