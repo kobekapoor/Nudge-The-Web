@@ -273,6 +273,14 @@ export default function SchedulePlanner() {
   const [overrides, setOverrides] = useState<Record<string, number>>({});
   const [holidays, setHolidays] = useState<Set<string>>(new Set());
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [showPwPrompt, setShowPwPrompt] = useState(false);
+  const [pwInput, setPwInput] = useState("");
+  const isDirtyRef = useRef(false);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const pendingPayloadRef = useRef<{ overrides: Record<string, number>; holidays: string[] } | null>(null);
+
   useEffect(() => {
     const link = document.createElement("link");
     link.rel = "stylesheet";
@@ -281,15 +289,72 @@ export default function SchedulePlanner() {
     return () => { document.head.removeChild(link); };
   }, []);
 
+  // Load saved state from API on mount
+  useEffect(() => {
+    fetch("/api/schedule")
+      .then(r => r.json())
+      .then((data: { overrides: Record<string, number>; holidays: string[] }) => {
+        if (data.overrides) setOverrides(data.overrides);
+        if (data.holidays) setHolidays(new Set(data.holidays));
+      })
+      .catch(() => {})
+      .finally(() => setIsLoaded(true));
+  }, []);
+
+  // Debounced auto-save — only fires after load and on user edits
+  useEffect(() => {
+    if (!isLoaded || !isDirtyRef.current) return;
+    clearTimeout(saveTimerRef.current);
+    const payload = { overrides, holidays: Array.from(holidays) };
+    saveTimerRef.current = setTimeout(() => doSave(payload), 600);
+    return () => clearTimeout(saveTimerRef.current);
+  }, [overrides, holidays, isLoaded]);
+
+  async function doSave(
+    payload: { overrides: Record<string, number>; holidays: string[] },
+    pw?: string,
+  ) {
+    setSaveStatus("saving");
+    pendingPayloadRef.current = payload;
+    const storedPw = pw ?? (typeof localStorage !== "undefined" ? localStorage.getItem("sp-password") ?? "" : "");
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (storedPw) headers["x-schedule-password"] = storedPw;
+    try {
+      const res = await fetch("/api/schedule", { method: "POST", headers, body: JSON.stringify(payload) });
+      if (res.status === 401) {
+        setSaveStatus("error");
+        setShowPwPrompt(true);
+        return;
+      }
+      if (res.ok) {
+        isDirtyRef.current = false;
+        setSaveStatus("saved");
+        setTimeout(() => setSaveStatus("idle"), 2000);
+      } else {
+        setSaveStatus("error");
+      }
+    } catch {
+      setSaveStatus("error");
+    }
+  }
+
+  function handlePwSubmit() {
+    localStorage.setItem("sp-password", pwInput);
+    setShowPwPrompt(false);
+    if (pendingPayloadRef.current) doSave(pendingPayloadRef.current, pwInput);
+    setPwInput("");
+  }
+
   const { year, month } = MONTHS_LIST[sel];
   const { firstDay, days, bonusDays, totalHours, effectiveTarget, holidayCount } = getMonthData(year, month, overrides, holidays);
   const allBonus = MONTHS_LIST.map(m => getMonthData(m.year, m.month, overrides, holidays).bonusDays.length);
   const maxBonus = Math.max(...allBonus, 1);
   const hasOverridesThisMonth = days.some(d => d.isOverridden);
 
-  const handleSave = (key: string, h: number) => setOverrides(o => ({ ...o, [key]: h }));
-  const handleReset = (key: string) => setOverrides(o => { const n = { ...o }; delete n[key]; return n; });
+  const handleSave = (key: string, h: number) => { isDirtyRef.current = true; setOverrides(o => ({ ...o, [key]: h })); };
+  const handleReset = (key: string) => { isDirtyRef.current = true; setOverrides(o => { const n = { ...o }; delete n[key]; return n; }); };
   const handleToggleHoliday = (key: string) => {
+    isDirtyRef.current = true;
     setHolidays(prev => {
       const next = new Set(prev);
       if (next.has(key)) next.delete(key); else next.add(key);
@@ -297,6 +362,7 @@ export default function SchedulePlanner() {
     });
   };
   const resetMonth = () => {
+    isDirtyRef.current = true;
     const keys = days.filter(d => d.isOverridden).map(d => dayKey(year, month, d.day));
     setOverrides(o => { const n = { ...o }; keys.forEach(k => delete n[k]); return n; });
   };
@@ -315,10 +381,54 @@ export default function SchedulePlanner() {
       margin: "0 auto",
     }}>
 
+      {/* Password prompt overlay */}
+      {showPwPrompt && (
+        <div style={{
+          position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", zIndex: 1000,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <div style={{
+            background: "#fff", borderRadius: 12, padding: 24, width: 280,
+            boxShadow: "0 12px 40px rgba(0,0,0,0.2)", fontFamily: "'DM Mono', monospace",
+          }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a2e", marginBottom: 6 }}>Password required</div>
+            <div style={{ fontSize: 10, color: "#aaa", marginBottom: 14 }}>Enter the password to save changes.</div>
+            <input
+              autoFocus
+              type="password"
+              value={pwInput}
+              onChange={e => setPwInput(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && handlePwSubmit()}
+              placeholder="Password"
+              style={{
+                width: "100%", padding: "8px 10px", fontSize: 12, fontFamily: "inherit",
+                border: "1px solid #d8d4cc", borderRadius: 6, outline: "none",
+                color: "#1a1a2e", boxSizing: "border-box", marginBottom: 12,
+              }}
+            />
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={handlePwSubmit} style={{
+                flex: 1, padding: "8px 0", fontSize: 11, fontFamily: "inherit",
+                background: "#1a1a2e", color: "#fff", border: "none", borderRadius: 6, cursor: "pointer", fontWeight: 600,
+              }}>Save</button>
+              <button onClick={() => { setShowPwPrompt(false); setPwInput(""); setSaveStatus("idle"); }} style={{
+                padding: "8px 14px", fontSize: 11, fontFamily: "inherit",
+                background: "#f5f0e8", color: "#888", border: "1px solid #e0d8cc", borderRadius: 6, cursor: "pointer",
+              }}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16, borderBottom: "1px solid #e4e0d8", paddingBottom: 14, flexWrap: "wrap" }}>
         <div style={{ minWidth: 0 }}>
-          <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800, margin: 0, color: "#1a1a2e", letterSpacing: "-0.02em" }}>Volunteer Hours</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800, margin: 0, color: "#1a1a2e", letterSpacing: "-0.02em" }}>Volunteer Hours</h1>
+            {saveStatus === "saving" && <span style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.05em" }}>saving…</span>}
+            {saveStatus === "saved"  && <span style={{ fontSize: 8.5, color: "#2baa65", letterSpacing: "0.05em" }}>saved ✓</span>}
+            {saveStatus === "error" && !showPwPrompt && <span style={{ fontSize: 8.5, color: "#c04040", letterSpacing: "0.05em" }}>error saving</span>}
+          </div>
           <p style={{ fontSize: 9, color: "#bbb", margin: "3px 0 0", letterSpacing: "0.08em", textTransform: "uppercase" }}>Aug 2026 – Aug 2027 · tap any day to edit</p>
         </div>
         <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
