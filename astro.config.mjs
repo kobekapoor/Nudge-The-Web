@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
 
 // Import the Vercel adapter
 import vercel from "@astrojs/vercel";
@@ -10,6 +11,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss({ config: "./tailwind.config.mjs" })],
   },
+  integrations: [react()],
   output: "server",
   adapter: vercel(),
 });
