@@ -8,7 +8,7 @@ interface DayInfo {
 }
 type Segment = { kind: "blank" } | { kind: "single"; cell: DayInfo } | { kind: "merged"; cells: DayInfo[]; typeId: string; span: number };
 
-const CUSTOM_TYPE_COLOR = "#7c5cbf";
+const CUSTOM_TYPE_COLOR = "#e07428";
 const BASE_SCHEDULE: Record<number, number> = { 1: 7, 3: 7, 4: 3, 5: 7, 6: 3 };
 const TARGET = 100;
 const REDUCED_HOURS = 2;
@@ -309,7 +309,7 @@ function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes
 }) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
-  const { day, dow, schedHours, status, cum, isOverridden, isLastSeven, isHoliday, customType } = d;
+  const { day, dow, schedHours, normalHours, status, cum, isOverridden, isLastSeven, isHoliday, customType } = d;
   const colorMap: Record<string, { bg: string; border: string; num: string; accent: string; sub: string; subText: string }> = {
     complete: { bg: "#eaf7f0", border: "#4ec486", num: "#1a4a30", accent: "#2baa65", sub: "#2baa65", subText: "#6dd4a0" },
     bonus:    { bg: "#f2fbf5", border: "#bbe0cc", num: "#1a6040", accent: "#2baa65", sub: "#4ec486", subText: "#9ed8b8" },
@@ -319,10 +319,10 @@ function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes
     custom:   { bg: customType ? customType.color + "18" : "#f8f7f4", border: customType ? customType.color + "88" : "#ddd", num: customType ? customType.color : "#888", accent: customType ? customType.color : "#888", sub: customType ? customType.color : "#888", subText: customType ? customType.color + "88" : "#bbb" },
   };
   const colors = colorMap[status] ?? colorMap.off;
-  const reducedDot = isLastSeven && !isOverridden && !isHoliday && !customType && schedHours > 0 && status !== "complete";
+  const reducedDot = !isHoliday && !customType && normalHours > 0 && schedHours > 0 && schedHours < normalHours;
   return (
     <div ref={anchorRef} style={{ position: "relative" }}>
-      <div onClick={() => setOpen(!open)} style={{ background: colors.bg, border: `1.5px solid ${open ? colors.accent : isOverridden && !isHoliday && !customType ? colors.sub : colors.border}`, borderRadius: 6, padding: "5px 3px 5px", minHeight: 54, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", cursor: "pointer", transition: "border-color 0.1s, box-shadow 0.1s", boxShadow: open ? `0 0 0 3px ${colors.accent}22` : "none", outline: isOverridden && !isHoliday && !customType ? `2px dashed ${colors.sub}88` : "none", outlineOffset: -3, boxSizing: "border-box" }}>
+      <div onClick={() => setOpen(!open)} style={{ background: colors.bg, border: `1.5px solid ${open ? colors.accent : colors.border}`, borderRadius: 6, padding: "5px 3px 5px", minHeight: 54, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", cursor: "pointer", transition: "border-color 0.1s, box-shadow 0.1s", boxShadow: open ? `0 0 0 3px ${colors.accent}22` : "none", boxSizing: "border-box" }}>
         {reducedDot && <div style={{ position: "absolute", top: 3, right: 3, width: 4, height: 4, borderRadius: "50%", background: "#f0a060" }} />}
         <span style={{ fontSize: 11, fontWeight: status === "complete" ? 700 : 400, color: colors.num, lineHeight: 1 }}>{day}</span>
         {status === "complete" && (<div style={{ textAlign: "center", lineHeight: 1.4 }}><div style={{ fontSize: 12, color: colors.accent }}>✓</div><div style={{ fontSize: 7, color: colors.subText, letterSpacing: "0.03em" }}>{schedHours}h</div></div>)}
@@ -404,7 +404,6 @@ export default function SchedulePlanner() {
 
   const { year, month } = MONTHS_LIST[sel];
   const { firstDay, days, bonusDays, totalHours, effectiveTarget, totalCredit } = getMonthData(year, month, overrides, holidays, customTypes, dayCustomTypes, dayCustomCredits);
-  const hasOverridesThisMonth = days.some(d => d.isOverridden);
   const overGoal = totalHours - effectiveTarget;
 
   const holidayAllowance = getHolidayAllowance(year, month);
@@ -431,6 +430,11 @@ export default function SchedulePlanner() {
     setCustomTypes(prev => [...prev, { id, name, credit, color: CUSTOM_TYPE_COLOR }]);
     return id;
   };
+  const handleDeleteCustomType = (id: string) => {
+    isDirtyRef.current = true;
+    setCustomTypes(prev => prev.filter(t => t.id !== id));
+    setDayCustomTypes(prev => { const n = { ...prev }; Object.keys(n).forEach(k => { if (n[k] === id) delete n[k]; }); return n; });
+  };
   const handleSetDayCredit = (key: string, credit: number) => {
     isDirtyRef.current = true;
     setDayCustomCredits(prev => ({ ...prev, [key]: credit }));
@@ -451,12 +455,6 @@ export default function SchedulePlanner() {
       setDayCustomTypes(prev => { const n = { ...prev }; cells.forEach(d => delete n[dayKey(year, month, d.day)]); return n; });
     }
   };
-  const resetMonth = () => {
-    isDirtyRef.current = true;
-    const keys = days.filter(d => d.isOverridden).map(d => dayKey(year, month, d.day));
-    setOverrides(o => { const n = { ...o }; keys.forEach(k => delete n[k]); return n; });
-  };
-
   const allCells: (DayInfo | null)[] = [...Array(firstDay).fill(null), ...days];
   const weeks: (DayInfo | null)[][] = [];
   for (let i = 0; i < allCells.length; i += 7) weeks.push(allCells.slice(i, Math.min(i + 7, allCells.length)));
@@ -506,9 +504,6 @@ export default function SchedulePlanner() {
         <div style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "wrap", minWidth: 0 }}>
           <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 26, fontWeight: 800, margin: 0, color: "#1a1a2e", letterSpacing: "-0.03em", lineHeight: 1 }}>{MONTH_NAMES[month]}</h2>
           <span style={{ fontSize: 12, color: "#bbb" }}>{year}</span>
-          {hasOverridesThisMonth && (
-            <button onClick={resetMonth} style={{ fontSize: 8.5, color: "#aaa", background: "#f0ece4", border: "1px solid #e0d8cc", borderRadius: 4, padding: "3px 7px", cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>↺ reset month</button>
-          )}
         </div>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 14, flexShrink: 0 }}>
           <div style={{ textAlign: "right" }}>
@@ -602,15 +597,12 @@ export default function SchedulePlanner() {
           <div key={ct.id} style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <div style={{ width: 11, height: 11, background: ct.color + "18", border: `1.5px solid ${ct.color}`, borderRadius: 2, flexShrink: 0 }} />
             <span style={{ fontSize: 8.5, color: "#666" }}>{ct.name} (−{ct.credit}h goal)</span>
+            <button onClick={() => handleDeleteCustomType(ct.id)} title="Delete tag" style={{ fontSize: 10, color: "#ccc", background: "none", border: "none", cursor: "pointer", padding: "0 1px", lineHeight: 1, fontFamily: "inherit" }}>×</button>
           </div>
         ))}
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-          <div style={{ width: 11, height: 11, background: "#fafaf7", border: "2px dashed #9aaedc", borderRadius: 2, flexShrink: 0 }} />
-          <span style={{ fontSize: 8.5, color: "#666" }}>Edited</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#f0a060", flexShrink: 0 }} />
-          <span style={{ fontSize: 8.5, color: "#666" }}>Reduced (last 7 days)</span>
+          <span style={{ fontSize: 8.5, color: "#666" }}>Reduced hours</span>
         </div>
       </div>
     </div>
