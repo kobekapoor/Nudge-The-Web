@@ -8,7 +8,7 @@ interface DayInfo {
 }
 type Segment = { kind: "blank" } | { kind: "single"; cell: DayInfo } | { kind: "merged"; cells: DayInfo[]; typeId: string; span: number };
 
-const TYPE_COLORS = ["#6a80d8","#e06060","#2baa65","#d04090","#20a090","#e07020","#3498db","#9b59b6"];
+const CUSTOM_TYPE_COLOR = "#7c5cbf";
 const BASE_SCHEDULE: Record<number, number> = { 1: 7, 3: 7, 4: 3, 5: 7, 6: 3 };
 const TARGET = 100;
 const REDUCED_HOURS = 2;
@@ -38,7 +38,8 @@ function getMonthData(
   overrides: Record<string, number>,
   holidays: Set<string>,
   customTypes: CustomType[],
-  dayCustomTypes: Record<string, string>
+  dayCustomTypes: Record<string, string>,
+  dayCustomCredits: Record<string, number>
 ) {
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -48,7 +49,7 @@ function getMonthData(
     if (holidays.has(key)) totalCredit += HOLIDAY_REDUCTION;
     else if (key in dayCustomTypes) {
       const ct = customTypes.find(t => t.id === dayCustomTypes[key]);
-      if (ct) totalCredit += ct.credit;
+      if (ct) totalCredit += (key in dayCustomCredits ? dayCustomCredits[key] : ct.credit);
     }
   }
   const effectiveTarget = Math.max(0, TARGET - totalCredit);
@@ -119,13 +120,15 @@ function buildWeekSegments(
   return segments;
 }
 
-function Popover({ d, year, month, onClose, onSave, onReset, onToggleHoliday, customTypes, onSetCustomType, onCreateCustomType, anchorRef }: {
+function Popover({ d, year, month, onClose, onSave, onReset, onToggleHoliday, customTypes, onSetCustomType, onCreateCustomType, dayCredit, onSetDayCredit, anchorRef }: {
   d: DayInfo; year: number; month: number; onClose: () => void; onSave: (h: number) => void;
   onReset: () => void; onToggleHoliday: () => void; customTypes: CustomType[];
   onSetCustomType: (id: string | null) => void; onCreateCustomType: (name: string, credit: number) => string;
+  dayCredit: number; onSetDayCredit: (credit: number) => void;
   anchorRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const [val, setVal] = useState(String(d.schedHours));
+  const [creditVal, setCreditVal] = useState(String(dayCredit));
   const [showNew, setShowNew] = useState(false);
   const [newName, setNewName] = useState("");
   const [newCredit, setNewCredit] = useState("4");
@@ -161,7 +164,12 @@ function Popover({ d, year, month, onClose, onSave, onReset, onToggleHoliday, cu
         <>
           <div style={{ background: d.customType.color + "18", border: `1px solid ${d.customType.color}`, borderRadius: 7, padding: "8px 10px", marginBottom: 10, textAlign: "center" }}>
             <div style={{ fontSize: 12, color: d.customType.color, fontWeight: 600 }}>{d.customType.name}</div>
-            <div style={{ fontSize: 8.5, color: d.customType.color + "aa", marginTop: 2 }}>−{d.customType.credit}h from goal</div>
+          </div>
+          <div style={{ fontSize: 9, color: "#bbb", marginBottom: 4 }}>Credit hours</div>
+          <div style={{ display: "flex", gap: 5, alignItems: "center", marginBottom: 9 }}>
+            <input type="number" min={0} max={24} value={creditVal} onChange={e => setCreditVal(e.target.value)} style={{ flex: 1, padding: "5px 7px", fontSize: 12, fontFamily: "inherit", border: "1px solid #d8d4cc", borderRadius: 5, background: "#fafaf8", outline: "none", color: "#1a1a2e", minWidth: 0, boxSizing: "border-box" }} />
+            <span style={{ fontSize: 10, color: "#bbb", whiteSpace: "nowrap" }}>h</span>
+            <button onClick={() => { onSetDayCredit(Math.max(0, parseInt(creditVal) || 0)); onClose(); }} style={{ padding: "5px 9px", fontSize: 10.5, fontFamily: "inherit", background: "#1a1a2e", color: "#fff", border: "none", borderRadius: 5, cursor: "pointer", fontWeight: 500 }}>Save</button>
           </div>
           <button onClick={() => { onSetCustomType(null); onClose(); }} style={{ width: "100%", padding: "7px 0", fontSize: 10.5, fontFamily: "inherit", background: "#fff0f0", color: "#c04040", border: "1px solid #f0c0c0", borderRadius: 5, cursor: "pointer", fontWeight: 500, marginBottom: 6 }}>Remove</button>
           {customTypes.filter(t => t.id !== d.customType!.id).length > 0 && (
@@ -228,11 +236,12 @@ function Popover({ d, year, month, onClose, onSave, onReset, onToggleHoliday, cu
   );
 }
 
-function MergedCell({ days, typeId, typeLabel, typeColor, creditPerDay, span, onRemoveAll }: {
+function MergedCell({ days, typeId, typeLabel, typeColor, creditPerDay, span, onRemoveAll, onSetBlockCredit }: {
   days: DayInfo[]; typeId: string; typeLabel: string; typeColor: string;
-  creditPerDay: number; span: number; onRemoveAll: () => void;
+  creditPerDay: number; span: number; onRemoveAll: () => void; onSetBlockCredit: (credit: number) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [blockCredit, setBlockCredit] = useState(String(creditPerDay));
   const anchorRef = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
   const isHol = typeId === "__holiday__";
@@ -263,6 +272,16 @@ function MergedCell({ days, typeId, typeLabel, typeColor, creditPerDay, span, on
             <div style={{ fontSize: 11, color: textColor, fontWeight: 600 }}>{typeLabel}</div>
             <div style={{ fontSize: 8.5, color: textColor + "aa", marginTop: 2 }}>{days.length} day{days.length > 1 ? "s" : ""} · −{days.length * creditPerDay}h from goal</div>
           </div>
+          {!isHol && (
+            <>
+              <div style={{ fontSize: 9, color: "#bbb", marginBottom: 4 }}>Credit per day</div>
+              <div style={{ display: "flex", gap: 5, alignItems: "center", marginBottom: 9 }}>
+                <input type="number" min={0} max={24} value={blockCredit} onChange={e => setBlockCredit(e.target.value)} style={{ flex: 1, padding: "5px 7px", fontSize: 12, fontFamily: "inherit", border: "1px solid #d8d4cc", borderRadius: 5, background: "#fafaf8", outline: "none", color: "#1a1a2e", minWidth: 0, boxSizing: "border-box" }} />
+                <span style={{ fontSize: 10, color: "#bbb", whiteSpace: "nowrap" }}>h</span>
+                <button onClick={() => { onSetBlockCredit(Math.max(0, parseInt(blockCredit) || 0)); setOpen(false); }} style={{ padding: "5px 9px", fontSize: 10.5, fontFamily: "inherit", background: "#1a1a2e", color: "#fff", border: "none", borderRadius: 5, cursor: "pointer", fontWeight: 500 }}>Save</button>
+              </div>
+            </>
+          )}
           <button onClick={() => { onRemoveAll(); setOpen(false); }} style={{ width: "100%", padding: "7px 0", fontSize: 10.5, fontFamily: "inherit", background: "#fff0f0", color: "#c04040", border: "1px solid #f0c0c0", borderRadius: 5, cursor: "pointer", fontWeight: 500 }}>Remove all</button>
         </div>
       )}
@@ -270,11 +289,12 @@ function MergedCell({ days, typeId, typeLabel, typeColor, creditPerDay, span, on
   );
 }
 
-function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes, onSetCustomType, onCreateCustomType }: {
+function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes, onSetCustomType, onCreateCustomType, dayCredit, onSetDayCredit }: {
   d: DayInfo; year: number; month: number; onSave: (key: string, h: number) => void;
   onReset: (key: string) => void; onToggleHoliday: (key: string) => void;
   customTypes: CustomType[]; onSetCustomType: (id: string | null) => void;
   onCreateCustomType: (name: string, credit: number) => string;
+  dayCredit: number; onSetDayCredit: (credit: number) => void;
 }) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
@@ -307,7 +327,9 @@ function DayCell({ d, year, month, onSave, onReset, onToggleHoliday, customTypes
           onReset={() => onReset(dayKey(year, month, day))}
           onToggleHoliday={() => onToggleHoliday(dayKey(year, month, day))}
           customTypes={customTypes} onSetCustomType={onSetCustomType}
-          onCreateCustomType={onCreateCustomType} anchorRef={anchorRef} />
+          onCreateCustomType={onCreateCustomType}
+          dayCredit={dayCredit} onSetDayCredit={onSetDayCredit}
+          anchorRef={anchorRef} />
       )}
     </div>
   );
@@ -319,6 +341,7 @@ export default function SchedulePlanner() {
   const [holidays, setHolidays] = useState<Set<string>>(new Set());
   const [customTypes, setCustomTypes] = useState<CustomType[]>([]);
   const [dayCustomTypes, setDayCustomTypes] = useState<Record<string, string>>({});
+  const [dayCustomCredits, setDayCustomCredits] = useState<Record<string, number>>({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const isDirtyRef = useRef(false);
@@ -340,16 +363,17 @@ export default function SchedulePlanner() {
       if (data.holidays) setHolidays(new Set(data.holidays));
       if (data.customTypes) setCustomTypes(data.customTypes);
       if (data.dayCustomTypes) setDayCustomTypes(data.dayCustomTypes);
+      if (data.dayCustomCredits) setDayCustomCredits(data.dayCustomCredits);
     }).catch(() => {}).finally(() => setIsLoaded(true));
   }, []);
 
   useEffect(() => {
     if (!isLoaded || !isDirtyRef.current) return;
     clearTimeout(saveTimerRef.current);
-    const payload = { overrides, holidays: Array.from(holidays), customTypes, dayCustomTypes };
+    const payload = { overrides, holidays: Array.from(holidays), customTypes, dayCustomTypes, dayCustomCredits };
     saveTimerRef.current = setTimeout(() => doSave(payload), 600);
     return () => clearTimeout(saveTimerRef.current);
-  }, [overrides, holidays, isLoaded, customTypes, dayCustomTypes]);
+  }, [overrides, holidays, isLoaded, customTypes, dayCustomTypes, dayCustomCredits]);
 
   useEffect(() => {
     if (selectedMonthRef.current) {
@@ -368,7 +392,7 @@ export default function SchedulePlanner() {
   }
 
   const { year, month } = MONTHS_LIST[sel];
-  const { firstDay, days, bonusDays, totalHours, effectiveTarget, totalCredit } = getMonthData(year, month, overrides, holidays, customTypes, dayCustomTypes);
+  const { firstDay, days, bonusDays, totalHours, effectiveTarget, totalCredit } = getMonthData(year, month, overrides, holidays, customTypes, dayCustomTypes, dayCustomCredits);
   const hasOverridesThisMonth = days.some(d => d.isOverridden);
   const overGoal = totalHours - effectiveTarget;
 
@@ -384,10 +408,21 @@ export default function SchedulePlanner() {
   };
   const handleCreateCustomType = (name: string, credit: number): string => {
     const id = `ct_${Date.now()}`;
-    const color = TYPE_COLORS[customTypes.length % TYPE_COLORS.length];
     isDirtyRef.current = true;
-    setCustomTypes(prev => [...prev, { id, name, credit, color }]);
+    setCustomTypes(prev => [...prev, { id, name, credit, color: CUSTOM_TYPE_COLOR }]);
     return id;
+  };
+  const handleSetDayCredit = (key: string, credit: number) => {
+    isDirtyRef.current = true;
+    setDayCustomCredits(prev => ({ ...prev, [key]: credit }));
+  };
+  const handleSetBlockCredit = (cells: DayInfo[], credit: number) => {
+    isDirtyRef.current = true;
+    setDayCustomCredits(prev => {
+      const n = { ...prev };
+      cells.forEach(d => { n[dayKey(year, month, d.day)] = credit; });
+      return n;
+    });
   };
   const handleRemoveMerged = (cells: DayInfo[], typeId: string) => {
     isDirtyRef.current = true;
@@ -493,14 +528,18 @@ export default function SchedulePlanner() {
                 if (seg.kind === "merged") {
                   const isHol = seg.typeId === "__holiday__";
                   const ct = isHol ? null : customTypes.find(t => t.id === seg.typeId);
+                  const firstKey = dayKey(year, month, seg.cells[0].day);
+                  const baseCreditPerDay = isHol ? HOLIDAY_REDUCTION : (ct?.credit ?? 0);
+                  const effectiveCreditPerDay = (!isHol && firstKey in dayCustomCredits) ? dayCustomCredits[firstKey] : baseCreditPerDay;
                   return (
                     <MergedCell key={`m${seg.cells[0].day}`}
                       days={seg.cells} typeId={seg.typeId}
                       typeLabel={isHol ? "Holiday" : (ct?.name ?? "")}
                       typeColor={isHol ? "#e08030" : (ct?.color ?? "#888")}
-                      creditPerDay={isHol ? HOLIDAY_REDUCTION : (ct?.credit ?? 0)}
+                      creditPerDay={effectiveCreditPerDay}
                       span={seg.span}
                       onRemoveAll={() => handleRemoveMerged(seg.cells, seg.typeId)}
+                      onSetBlockCredit={(credit) => handleSetBlockCredit(seg.cells, credit)}
                     />
                   );
                 }
@@ -510,6 +549,8 @@ export default function SchedulePlanner() {
                     customTypes={customTypes}
                     onSetCustomType={(id) => handleSetCustomType(dayKey(year, month, seg.cell.day), id)}
                     onCreateCustomType={handleCreateCustomType}
+                    dayCredit={dayCustomCredits[dayKey(year, month, seg.cell.day)] ?? seg.cell.customType?.credit ?? 0}
+                    onSetDayCredit={(credit) => handleSetDayCredit(dayKey(year, month, seg.cell.day), credit)}
                   />
                 );
               })}
