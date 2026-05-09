@@ -464,24 +464,11 @@ export default function SchedulePlanner() {
       <style>{`.sp-ms::-webkit-scrollbar{display:none}`}</style>
 
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16, borderBottom: "1px solid #e4e0d8", paddingBottom: 14, flexWrap: "wrap" }}>
-        <div style={{ minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800, margin: 0, color: "#1a1a2e", letterSpacing: "-0.02em" }}>Volunteer Hours</h1>
-            {saveStatus === "saving" && <span style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.05em" }}>saving…</span>}
-            {saveStatus === "saved"  && <span style={{ fontSize: 8.5, color: "#2baa65", letterSpacing: "0.05em" }}>saved ✓</span>}
-            {saveStatus === "error"  && <span style={{ fontSize: 8.5, color: "#c04040", letterSpacing: "0.05em" }}>error saving</span>}
-          </div>
-          <p style={{ fontSize: 9, color: "#bbb", margin: "3px 0 0", letterSpacing: "0.08em", textTransform: "uppercase" }}>Aug 2026 – Dec 2029 · tap any day to edit</p>
-        </div>
-        <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
-          {[{ l: "Mon", h: 7 }, { l: "Wed", h: 7 }, { l: "Thu", h: 3 }, { l: "Fri", h: 7 }, { l: "Sat", h: 3 }].map(s => (
-            <div key={s.l} style={{ textAlign: "center" }}>
-              <div style={{ color: "#4560cc", fontWeight: 500, fontSize: 11 }}>{s.h}h</div>
-              <div style={{ color: "#bbb", letterSpacing: "0.05em", fontSize: 8.5 }}>{s.l}</div>
-            </div>
-          ))}
-        </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, borderBottom: "1px solid #e4e0d8", paddingBottom: 14 }}>
+        <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800, margin: 0, color: "#1a1a2e", letterSpacing: "-0.02em" }}>Volunteer Hours</h1>
+        {saveStatus === "saving" && <span style={{ fontSize: 8.5, color: "#bbb", letterSpacing: "0.05em" }}>saving…</span>}
+        {saveStatus === "saved"  && <span style={{ fontSize: 8.5, color: "#2baa65", letterSpacing: "0.05em" }}>saved ✓</span>}
+        {saveStatus === "error"  && <span style={{ fontSize: 8.5, color: "#c04040", letterSpacing: "0.05em" }}>error saving</span>}
       </div>
 
       {/* Month selector */}
