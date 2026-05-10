@@ -7,5 +7,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.rewrite("/sp");
   }
 
+  if (hostname === "jw.nudgetheweb.com" && !context.url.pathname.startsWith("/jw") && !context.url.pathname.startsWith("/api")) {
+    return context.rewrite("/jw");
+  }
+
   return next();
 });
